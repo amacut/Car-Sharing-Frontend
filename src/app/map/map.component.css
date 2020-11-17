@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
+}
+
+agm-map {
+  position: absolute;
+  top: 1vw;
+  left: 16vw;
+  right: 1vw;
+  border: 5px solid black;
+  height: 95vh;
+}
