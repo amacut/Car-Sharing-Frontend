@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MouseEvent } from '@agm/core';
+import {GeolocationService} from '@ng-web-apis/geolocation';
+import {take} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-map',
@@ -7,46 +9,34 @@ import { MouseEvent } from '@agm/core';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   // google maps zoom level
   zoom: number = 8;
-
   // initial center position for the map
-  lat: number = 52.2297700;
-  lng: number = 21.0117800;
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`);
-  }
-
-  mapClicked($event: MouseEvent) {
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: true
+  latitude: number;
+  longitude: number;
+  iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  constructor(private readonly geolocation$: GeolocationService) {
+    this.geolocation$.pipe(take(1)).subscribe(position => {
+      this.latitude = position.coords.latitude ;
+      this.longitude = position.coords.longitude - 0.008;
     });
   }
-
-  markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
+  ngOnInit(): void {
   }
-
   markers: marker[] = [
     {
-      lat: 51.673858,
+      lat: 51.373858,
       lng: 7.815982,
       label: 'A',
-      draggable: true
+      draggable: true,
+      icon: this.iconBase + 'parking_lot_maps.png'
     },
     {
       lat: 51.373858,
       lng: 7.215982,
       label: 'B',
-      draggable: false
+      draggable: false,
+      icon: 'https://cdn0.iconfinder.com/data/icons/aami-flat-map-pins-and-navigation/64/location-65-512.png'
     },
     {
       lat: 51.723858,
@@ -55,7 +45,6 @@ export class MapComponent implements OnInit {
       draggable: true
     }
   ];
-
 }
 // just an interface for type safety.
 interface marker {
@@ -63,4 +52,5 @@ interface marker {
   lng: number;
   label?: string;
   draggable: boolean;
+  icon?: string;
 }
