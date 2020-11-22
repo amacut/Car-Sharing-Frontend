@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 import {take} from 'rxjs/operators';
+import {VehicleResponseInterface} from '../vehicles/vehicleResponseInterface';
+
 
 
 @Component({
@@ -9,6 +11,7 @@ import {take} from 'rxjs/operators';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+vehicle: VehicleResponseInterface[];
   // google maps zoom level
   zoom: number = 8;
   // initial center position for the map
@@ -23,7 +26,7 @@ export class MapComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  markers: marker[] = [
+  vehicles: marker[] = [
     {
       lat: 51.373858,
       lng: 7.815982,

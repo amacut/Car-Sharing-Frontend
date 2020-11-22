@@ -11,21 +11,21 @@
   </agm-info-window>
 </agm-marker>
   <agm-marker
-    *ngFor="let m of markers; let i = index"
+    *ngFor="let vehicle of vehicles; let i = index"
 
-    [latitude]="m.lat"
-    [longitude]="m.lng"
-    [label]="m.label"
-    [markerDraggable]="m.draggable"
-  [iconUrl]="m.icon">
+    [latitude]="vehicle.lat"
+    [longitude]="vehicle.lng"
+    [label]="vehicle.label"
+    [markerDraggable]="vehicle.draggable"
+  [iconUrl]="vehicle.icon">
 <!--    (markerClick)="clickedMarker(m.label, i)"-->
 <!--    //(dragEnd)="markerDragEnd(m, $event)">-->
 
     <agm-info-window>
       <strong>InfoWindow content</strong>
     </agm-info-window>
-
   </agm-marker>
+
 
 <!--  <agm-circle [latitude]="lat + 0.3" [longitude]="lng"-->
 <!--              [radius]="5000"-->
