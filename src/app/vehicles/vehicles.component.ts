@@ -23,4 +23,8 @@ export class VehiclesComponent implements OnInit {
     this.vehicleService.getVehicles()
       .subscribe(response => (this.vehicle = response));
   }
+
+  // tutaj wołać metody na komponencie mapy zeby tworzyć markery
 }
+
+

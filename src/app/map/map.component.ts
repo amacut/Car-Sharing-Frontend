@@ -13,7 +13,7 @@ import {VehicleResponseInterface} from '../vehicles/vehicleResponseInterface';
 export class MapComponent implements OnInit {
 vehicle: VehicleResponseInterface[];
   // google maps zoom level
-  zoom: number = 8;
+  zoom: number = 16;
   // initial center position for the map
   latitude: number;
   longitude: number;
@@ -25,6 +25,7 @@ vehicle: VehicleResponseInterface[];
     });
   }
   ngOnInit(): void {
+    this.addMarker(52.00023, 21.00586);
   }
   vehicles: marker[] = [
     {
@@ -44,16 +45,21 @@ vehicle: VehicleResponseInterface[];
     {
       lat: 51.723858,
       lng: 7.895982,
-      label: 'C',
-      draggable: true
+      label: 'C'
     }
   ];
+
+  addMarker(lat: number, lng: number) {
+    this.vehicles.push(
+      {lat: lat, lng: lng}
+    );
+  }
 }
 // just an interface for type safety.
 interface marker {
   lat: number;
   lng: number;
   label?: string;
-  draggable: boolean;
+  draggable?: boolean;
   icon?: string;
 }
