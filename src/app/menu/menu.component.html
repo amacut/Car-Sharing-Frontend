@@ -1,15 +1,26 @@
 <nav class="desktop">
-  <fa-icon [icon]="faCar"></fa-icon>
+  <img src="../../assets/images/CarSharing.png" alt="Logo">
   <ul>
-    <li><a href="#">Mapa</a></li>
-    <li><a href="#">Historia wypożyczeń</a></li>
-    <li><a href="#">Aktywne wypożyczenia</a></li>
-    <li><a href="#">Moje konto</a></li>
-    <li><a href="#">Cennik</a></li>
-    <li><a href="#">FAQ | Przewodnik</a></li>
-    <li><a href="#">Poleć aplikację</a></li>
-    <li><a href="#">Promocje</a></li>
-    <li><a href="#">Ustawienia</a></li>
-    <li><a href="#">Wyloguj</a></li>
+    <li>
+      <a href="#">
+        <fa-icon [icon]="faMap"></fa-icon> Mapa
+      </a>
+    </li>
+    <li><a href="#"><fa-icon [icon]="faHistory"></fa-icon>Historia wypożyczeń</a></li>
+    <li><a href="#"><fa-icon [icon]="faCar"></fa-icon>Aktywne wypożyczenia</a></li>
+    <li><a href="#"><fa-icon [icon]="faUser"></fa-icon>Moje konto</a></li>
+    <li><a href="#"><fa-icon [icon]="faPriceList"></fa-icon>Cennik</a></li>
+    <li><a href="#"><fa-icon [icon]="faInfo"></fa-icon>FAQ | Przewodnik</a></li>
+    <li><a href="#"><fa-icon [icon]="faShare"></fa-icon>Poleć aplikację</a></li>
+    <li><a href='promotions'><fa-icon [icon]="faPromo"></fa-icon>Promocje</a></li>
+    <li><a href="#"><fa-icon [icon]="faConfig"></fa-icon>Ustawienia</a></li>
+    <li><a href="#"><fa-icon [icon]="faLogOut"></fa-icon>Wyloguj</a></li>
   </ul>
+  <div>
+    <a href="#"><img src="../../assets/images/info.jpg" alt=""></a>
+    <a href="#"><img src="../../assets/images/facebook.jpg" alt=""></a>
+    <a href="#"><img src="../../assets/images/instagram.png" alt=""></a>
+    <a href="#"><img src="../../assets/images/twitter.png" alt=""></a>
+  </div>
+<p>&copy; AM</p>
 </nav>
