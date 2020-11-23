@@ -1,3 +1,4 @@
+<!--
 <agm-marker *ngFor="let v of vehicle"
 [latitude]="v.latitude"
 [longitude]="v.longitude">
@@ -5,3 +6,9 @@
   <strong>{{v.registration}}</strong>
 </agm-info-window>
 </agm-marker>
+-->
+
+<p *ngFor="let vehicle of vehicle">
+  {{vehicle.latitude}}
+  {{vehicle.longitude}}
+</p>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 import {take} from 'rxjs/operators';
 import {VehicleResponseInterface} from '../vehicles/vehicleResponseInterface';
+import {VehiclesService} from '../vehicles/vehicles.service';
 
 
 
@@ -12,19 +13,28 @@ import {VehicleResponseInterface} from '../vehicles/vehicleResponseInterface';
 })
 export class MapComponent implements OnInit {
 vehicle: VehicleResponseInterface[];
+
   // google maps zoom level
   zoom: number = 16;
   // initial center position for the map
   latitude: number;
   longitude: number;
   iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-  constructor(private readonly geolocation$: GeolocationService) {
+  constructor(private readonly geolocation$: GeolocationService, private vehicleService: VehiclesService) {
     this.geolocation$.pipe(take(1)).subscribe(position => {
       this.latitude = position.coords.latitude ;
       this.longitude = position.coords.longitude - 0.008;
     });
   }
   ngOnInit(): void {
+    let vehicles1 = this.vehicleService.getVehicles();
+    vehicles1.subscribe(response => {
+      console.log(response);
+      response.forEach(value => {
+        console.log(value);
+        this.addMarker(value.latitude, value.longitude);
+      });
+    });
     this.addMarker(52.00023, 21.00586);
   }
   vehicles: marker[] = [

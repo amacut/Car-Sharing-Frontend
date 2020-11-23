@@ -16,13 +16,12 @@ export class VehiclesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllVehicles();
   }
 
-  getAllVehicles(): void {
-    this.vehicleService.getVehicles()
-      .subscribe(response => (this.vehicle = response));
-  }
+  // getAllVehicles(): void {
+  //   this.vehicleService.getVehicles()
+  //     .subscribe(response => (this.vehicle = response));
+  // }
 
   // tutaj wołać metody na komponencie mapy zeby tworzyć markery
 }
