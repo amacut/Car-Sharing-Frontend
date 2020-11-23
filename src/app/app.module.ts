@@ -11,6 +11,7 @@ import { MapComponent } from './map/map.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ConfigComponent } from './config/config.component';
+import { PromotionsComponent } from './promotions/promotions.component';
 
 
 
@@ -21,6 +22,7 @@ import { ConfigComponent } from './config/config.component';
     MapComponent,
     VehiclesComponent,
     ConfigComponent,
+    PromotionsComponent,
   ],
   imports: [
     BrowserModule,

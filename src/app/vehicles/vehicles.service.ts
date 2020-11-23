@@ -9,12 +9,12 @@ import {VehicleResponseInterface} from './vehicleResponseInterface';
   providedIn: 'root'
 })
 export class VehiclesService {
-  vehiclesUrl = 'http://localhost:8080/';
+  mainUrl = 'http://localhost:8080/';
 
   constructor( private http: HttpClient) {
   }
 
   getVehicles(): Observable<VehicleResponseInterface[]> {
-return this.http.get<VehicleResponseInterface[]>(this.vehiclesUrl + 'all');
+return this.http.get<VehicleResponseInterface[]>(this.mainUrl + 'all');
   }
 }
