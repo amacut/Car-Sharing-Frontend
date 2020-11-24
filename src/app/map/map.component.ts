@@ -19,7 +19,9 @@ vehicle: VehicleResponseInterface[];
   // initial center position for the map
   latitude: number;
   longitude: number;
-  iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCRuLGe61gWt6aIlwlHKgetiYdjP48relQ
+  userIcon = 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png';
+  vehicleIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon54.png';
   constructor(private readonly geolocation$: GeolocationService, private vehicleService: VehiclesService) {
     this.geolocation$.pipe(take(1)).subscribe(position => {
       this.latitude = position.coords.latitude ;
@@ -27,40 +29,17 @@ vehicle: VehicleResponseInterface[];
     });
   }
   ngOnInit(): void {
-    let vehicles1 = this.vehicleService.getVehicles();
-    vehicles1.subscribe(response => {
-      console.log(response);
+    let allVehicles = this.vehicleService.getVehicles();
+    allVehicles.subscribe(response => {
       response.forEach(value => {
-        console.log(value);
         this.addMarker(value.latitude, value.longitude);
       });
     });
-    this.addMarker(52.00023, 21.00586);
   }
-  vehicles: marker[] = [
-    {
-      lat: 51.373858,
-      lng: 7.815982,
-      label: 'A',
-      draggable: true,
-      icon: this.iconBase + 'parking_lot_maps.png'
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: 'B',
-      draggable: false,
-      icon: 'https://cdn0.iconfinder.com/data/icons/aami-flat-map-pins-and-navigation/64/location-65-512.png'
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: 'C'
-    }
-  ];
 
+  vehiclesMarkers: marker[] = [];
   addMarker(lat: number, lng: number) {
-    this.vehicles.push(
+    this.vehiclesMarkers.push(
       {lat: lat, lng: lng}
     );
   }
@@ -71,5 +50,5 @@ interface marker {
   lng: number;
   label?: string;
   draggable?: boolean;
-  icon?: string;
+  // icon?: string;
 }

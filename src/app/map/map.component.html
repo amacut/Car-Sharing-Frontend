@@ -4,39 +4,41 @@
   [zoom]="zoom"
   [disableDefaultUI]="false"
   [zoomControl]="true">
-<!--  (mapClick)="mapClicked($event)">-->
-<agm-marker [latitude]="latitude" [longitude]="longitude" [label]="'Ty'">
-  <agm-info-window>
-    <strong>Imię nazwisko</strong>
-  </agm-info-window>
-</agm-marker>
+  <!--  (mapClick)="mapClicked($event)">-->
+  <agm-marker [latitude]="latitude" [longitude]="longitude"
+              [iconUrl]="userIcon">
+    <agm-info-window>
+      <strong>Imię nazwisko</strong>
+    </agm-info-window>
+  </agm-marker>
   <agm-marker
-    *ngFor="let vehicle of vehicles; let i = index"
-
+    *ngFor="let vehicle of vehiclesMarkers; let i = index"
     [latitude]="vehicle.lat"
     [longitude]="vehicle.lng"
     [label]="vehicle.label"
     [markerDraggable]="vehicle.draggable"
-  [iconUrl]="vehicle.icon">
-<!--    (markerClick)="clickedMarker(m.label, i)"-->
-<!--    //(dragEnd)="markerDragEnd(m, $event)">-->
-
-    <agm-info-window>
-      <strong>InfoWindow content</strong>
+    [iconUrl]="vehicleIcon">
+    <!--    (markerClick)="clickedMarker(m.label, i)"-->
+    <!--    //(dragEnd)="markerDragEnd(m, $event)">-->
+    <agm-info-window >
+      <button>Zarezerwuj ten samochód</button>
+      <button>Rozpocznij wynajem</button>
+      <button>Prowadź do auta</button>
+      <button>Wyceń przejazd</button>
     </agm-info-window>
   </agm-marker>
 
 
-<!--  <agm-circle [latitude]="lat + 0.3" [longitude]="lng"-->
-<!--              [radius]="5000"-->
-<!--              [fillColor]="'red'"-->
-<!--              [circleDraggable]="true"-->
-<!--              [editable]="true">-->
-<!--  </agm-circle>-->
+  <!--  <agm-circle [latitude]="lat + 0.3" [longitude]="lng"-->
+  <!--              [radius]="5000"-->
+  <!--              [fillColor]="'red'"-->
+  <!--              [circleDraggable]="true"-->
+  <!--              [editable]="true">-->
+  <!--  </agm-circle>-->
 
 </agm-map>
-
+<!--
 <p *ngFor="let vehicle of vehicle">
   {{vehicle.latitude}}
   {{vehicle.longitude}}
-</p>
+</p>-->
