@@ -13,7 +13,7 @@ nav {
   display: flex;
   flex-direction: column;
   background-color: #D9D9D9;
-  font-family: Arial, serif;
+  /*font-family: Arial, serif;*/
   font-size: 20px;
 }
 
@@ -30,7 +30,7 @@ nav ul li a {
   display: block;
   line-height: 55px;
   margin: 2px;
-  padding: 0px 0px 0 50px;
+  padding: 0 0 0 50px;
   letter-spacing: 1px;
   background-color: white;
   color: black;

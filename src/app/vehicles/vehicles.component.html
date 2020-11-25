@@ -1,14 +1,44 @@
-<!--
-<agm-marker *ngFor="let v of vehicle"
-[latitude]="v.latitude"
-[longitude]="v.longitude">
-<agm-info-window>
-  <strong>{{v.registration}}</strong>
-</agm-info-window>
-</agm-marker>
--->
+<div class="wrapper">
+  <p class="location">Polska, Warszawa, Górce</p>
+  <p class="car">(Premium) mercedes gla WW5346S</p>
+  <div class="params">
+    <p>Odległość:</p>
+    <p>0,4</p>
+    <p class="unit">km</p>
+    <p>Zasięg:</p>
+    <p>116,7</p>
+    <p class="unit">km</p>
+    <p>Paliwo:</p>
+    <p>28,0</p>
+    <p class="unit">%</p>
+  </div>
 
-<p *ngFor="let vehicle of vehicle">
-  {{vehicle.latitude}}
-  {{vehicle.longitude}}
-</p>
+  <div class="cost">
+    <div class="driving">
+      <p>Minuta jazdy</p>
+      <p>0,99</p>
+      <p>PLN/min</p>
+    </div>
+    <div class="stop">
+      <p>Postój</p>
+      <p>0,20</p>
+      <p>PLN/min</p>
+    </div>
+    <div class="kilometers">
+      <p>Kilometr</p>
+      <p>0,99</p>
+      <p>PLN/km</p>
+    </div>
+  </div>
+
+    <div class="rent">
+      <a href="#">Zarezerwuj ten samochód</a>
+      <a href="#">Rozpocznij wynajem</a>
+    </div>
+
+    <div class="other">
+      <a href="#">Prowadź do auta</a>
+      <a href="#">Wyceń przejazd</a>
+    </div>
+  </div>
+

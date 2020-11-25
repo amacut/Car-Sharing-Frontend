@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 30px auto;
+}
+
+.wrapper .location {
+  color: darkgrey;
+}
+
+.wrapper .car {
+  text-transform: uppercase;
+}
+
+.wrapper .params {
+  margin-left: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.wrapper .params p{
+  color: blue;
+  text-align: right;
+  padding-right: 3%;
+flex-basis: 30%;
+}
+.wrapper .params p.unit{
+  text-align: left;
+}
+
+.wrapper .cost {
+  display: flex;
+  width: 60%;
+
+  justify-content: space-between;
+}
+
+.wrapper .cost  div p{
+  text-align: center;
+}
+.wrapper .cost  div p:nth-of-type(2){
+  font-size: 20px;
+}
+
+.wrapper .rent a{
+  font-size: 23px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  color: white;
+  letter-spacing: 1px;
+  background-color: royalblue;
+  padding: 10px 30px;
+  margin: 10px 0;
+  border-radius: 20px;
+}
+
+.wrapper .other a{
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 1px;
+  display: inline-block;
+  color: royalblue;
+border: 2px solid royalblue;
+  padding: 10px 30px;
+  margin: 10px 10px;
+  border-radius: 20px;
+}

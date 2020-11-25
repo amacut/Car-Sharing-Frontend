@@ -17,4 +17,8 @@ export class VehiclesService {
   getVehicles(): Observable<VehicleResponseInterface[]> {
 return this.http.get<VehicleResponseInterface[]>(this.mainUrl + 'all');
   }
+
+  getInfo(vehicle){
+
+  }
 }

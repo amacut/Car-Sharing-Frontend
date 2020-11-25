@@ -1,44 +1,36 @@
-<agm-map
-  [latitude]="latitude"
-  [longitude]="longitude"
+<div class="map">
+  <agm-map
+  [latitude]="userLatitude"
+  [longitude]="userLongitude"
   [zoom]="zoom"
-  [disableDefaultUI]="false"
-  [zoomControl]="true">
-  <!--  (mapClick)="mapClicked($event)">-->
-  <agm-marker [latitude]="latitude" [longitude]="longitude"
-              [iconUrl]="userIcon">
-    <agm-info-window>
-      <strong>Imię nazwisko</strong>
-    </agm-info-window>
+  [zoomControl]="true"
+  [fullscreenControl]="true"
+  [clickableIcons]="false">
+  <agm-marker [latitude]="userLatitude" [longitude]="userLongitude"
+              [iconUrl]="userIcon" [markerClickable]="false">
+    <agm-circle [latitude]="userLatitude" [longitude]="userLongitude"
+                [radius]="25"
+                [fillColor]="'lightblue'"
+                [circleDraggable]="false"
+                [editable]="false">
+    </agm-circle>
   </agm-marker>
+
   <agm-marker
     *ngFor="let vehicle of vehiclesMarkers; let i = index"
     [latitude]="vehicle.lat"
     [longitude]="vehicle.lng"
     [label]="vehicle.label"
     [markerDraggable]="vehicle.draggable"
-    [iconUrl]="vehicleIcon">
-    <!--    (markerClick)="clickedMarker(m.label, i)"-->
+    [iconUrl]="vehicleIcon"
+    (markerClick)="clickedMarker(i)">
+
     <!--    //(dragEnd)="markerDragEnd(m, $event)">-->
-    <agm-info-window >
-      <button>Zarezerwuj ten samochód</button>
-      <button>Rozpocznij wynajem</button>
-      <button>Prowadź do auta</button>
-      <button>Wyceń przejazd</button>
-    </agm-info-window>
   </agm-marker>
 
-
-  <!--  <agm-circle [latitude]="lat + 0.3" [longitude]="lng"-->
-  <!--              [radius]="5000"-->
-  <!--              [fillColor]="'red'"-->
-  <!--              [circleDraggable]="true"-->
-  <!--              [editable]="true">-->
-  <!--  </agm-circle>-->
-
 </agm-map>
-<!--
-<p *ngFor="let vehicle of vehicle">
-  {{vehicle.latitude}}
-  {{vehicle.longitude}}
-</p>-->
+<!--<div class="user-location" (click)="userLocation()">-->
+<!--  <img src="../../assets/images/userlocation.png" alt="">-->
+<!--</div>-->
+</div>
+

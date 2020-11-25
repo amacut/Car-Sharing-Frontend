@@ -4,13 +4,41 @@
   /*box-sizing: border-box;*/
 }
 
+div.map {
+  position: relative;
+}
+
 agm-map {
   position: absolute;
   top: 1vw;
   left: 16vw;
   right: 1vw;
   border: 5px solid black;
-  height: 95vh;
+  height: 93vh;
+}
+
+div.user-location {
+  position: absolute;
+  top: 38vw;
+  right: 1.75vw;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: #fff;
+  border-radius: 10%;
+  box-shadow: 0 0 5px black;
+  z-index: 1;
+  cursor: pointer;
+}
+
+div.user-location img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+  opacity: .7;
+}
+div.user-location img:hover {
+  opacity: 1;
 }
 
 
