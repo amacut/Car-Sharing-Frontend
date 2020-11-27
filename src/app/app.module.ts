@@ -14,7 +14,7 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ConfigComponent } from './config/config.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MapService } from './map.service';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      // apiKey: 'AIzaSyCRuLGe61gWt6aIlwlHKgetiYdjP48relQ'
+      apiKey: MapService.mapKey
     }),
     BrowserAnimationsModule
   ],

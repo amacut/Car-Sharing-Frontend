@@ -10,25 +10,31 @@ import {MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./vehicles.component.css']
 })
 export class VehiclesComponent implements OnInit {
-  vehicle: VehicleResponseInterface[];
+  public vehicles: VehicleResponseInterface[];
+  public vehicle: VehicleResponseInterface;
 
   constructor(public vehicleService: VehiclesService,
               private dialogRef: MatDialogRef<VehiclesComponent>) {
   }
 
   ngOnInit(): void {
-    this.getAllVehicles();
+    this.vehicle = this.dialogRef._containerInstance._config.data.response;
   }
   onClose() {
     this.dialogRef.close();
   }
 
-  getAllVehicles(): void {
+  /*getAllVehicles(): void {
     this.vehicleService.getVehicles()
-      .subscribe(response => (this.vehicle = response));
-  }
+      .subscribe(response => (this.vehicles = response));
+  }*/
+  /*getVehicle(id: number): void {
+    this.vehicleService.getVehicle(id).subscribe(response => {
+      this.vehicle = response;
+    });
+  }*/
 
-  // tutaj wołać metody na komponencie mapy zeby tworzyć markery
 }
+
 
 

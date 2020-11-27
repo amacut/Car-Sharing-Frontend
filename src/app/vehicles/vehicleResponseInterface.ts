@@ -1,10 +1,13 @@
 export interface VehicleResponseInterface {
   id: number;
-  vehicleModelId: number;
+  vehicleType: string;
+  vehicleBrand: string;
+  vehicleModel: string;
+  drivingPrice: number;
+  stopOverPrice: number;
+  distancePrice: number;
   registration: string;
-  maxFuel: number;
   currentFuel: number;
-  maxRange: number;
   currentRange: number;
   latitude: number;
   longitude: number;

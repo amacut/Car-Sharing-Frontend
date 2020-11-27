@@ -1,32 +1,32 @@
 <div class="wrapper">
   <p class="location">Polska, Warszawa, Górce</p>
-  <p class="car">(Premium) mercedes gla WW5346S</p>
+  <p class="car">({{vehicle.vehicleType}}) {{vehicle.vehicleBrand}} {{vehicle.vehicleModel}} {{vehicle.registration}}</p>
   <div class="params">
     <p>Odległość:</p>
     <p>0,4</p>
     <p class="unit">km</p>
     <p>Zasięg:</p>
-    <p>116,7</p>
+    <p>{{vehicle.currentRange}}</p>
     <p class="unit">km</p>
     <p>Paliwo:</p>
-    <p>28,0</p>
+    <p>{{vehicle.currentFuel}}</p>
     <p class="unit">%</p>
   </div>
 
   <div class="cost">
     <div class="driving">
       <p>Minuta jazdy</p>
-      <p>0,99</p>
+      <p>{{vehicle.drivingPrice.toFixed(2)}}</p>
       <p>PLN/min</p>
     </div>
     <div class="stop">
       <p>Postój</p>
-      <p>0,20</p>
+      <p>{{vehicle.stopOverPrice.toFixed(2)}}</p>
       <p>PLN/min</p>
     </div>
     <div class="kilometers">
       <p>Kilometr</p>
-      <p>0,99</p>
+      <p>{{vehicle.distancePrice.toFixed(2)}}</p>
       <p>PLN/km</p>
     </div>
   </div>

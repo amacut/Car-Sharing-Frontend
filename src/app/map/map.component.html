@@ -23,7 +23,7 @@
     [label]="vehicle.label"
     [markerDraggable]="vehicle.draggable"
     [iconUrl]="vehicleIcon"
-    (markerClick)="clickedMarker(i)">
+    (markerClick)="clickedMarker(vehicle.id)">
 
     <!--    //(dragEnd)="markerDragEnd(m, $event)">-->
   </agm-marker>
