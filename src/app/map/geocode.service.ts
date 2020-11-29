@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {MapService} from '../map.service';
+import {MapKeyService} from '../mapKey.service';
 
 
 
@@ -17,7 +17,7 @@ export class GeocodeService {
   getAddress(lat: number, lng: number): void {
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=
     console.log('get');
-    this.http.get(this.geocodeUrl + '?latlng=' + lat + ',' + lng + '&key=' + MapService.mapKey).subscribe(data => {
+    this.http.get(this.geocodeUrl + '?latlng=' + lat + ',' + lng + '&key=' + MapKeyService.mapKey).subscribe(data => {
       console.log(data);
     });
   }

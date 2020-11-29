@@ -5,6 +5,7 @@ import {VehiclesService} from '../vehicles/vehicles.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {VehiclesComponent} from '../vehicles/vehicles.component';
+import {DirectionsService} from './directions.service';
 
 
 @Component({
@@ -24,12 +25,14 @@ export class MapComponent implements OnInit {
   constructor(private readonly geolocation$: GeolocationService,
               private vehicleService: VehiclesService,
               private http: HttpClient,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private directions: DirectionsService) {
   }
 
   ngOnInit(): void {
     this.userLocation();
     this.addAllVehiclesToMap();
+    this.directions.getRoute();
   }
 
 

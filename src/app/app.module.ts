@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ApiUrlInterceptor} from './interceptors/api-url.interceptor';
 import {MaterialModule} from './material/material.module';
+import {DirectionsService} from './map/directions.service';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -14,7 +16,7 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ConfigComponent } from './config/config.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MapService } from './map.service';
+import { MapKeyService } from './mapKey.service';
 
 
 @NgModule({
@@ -33,11 +35,14 @@ import { MapService } from './map.service';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      apiKey: MapService.mapKey
+      apiKey: MapKeyService.mapKey
     }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    DirectionsService,
+    {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent],
   entryComponents: [VehiclesComponent]
 })

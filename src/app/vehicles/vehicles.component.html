@@ -2,13 +2,13 @@
   <p class="location">Polska, Warszawa, Górce</p>
   <p class="car">({{vehicle.vehicleType}}) {{vehicle.vehicleBrand}} {{vehicle.vehicleModel}} {{vehicle.registration}}</p>
   <div class="params">
-    <p>Odległość:</p>
+    <p><fa-icon [icon]="faDistance"></fa-icon>Odległość:</p>
     <p>0,4</p>
     <p class="unit">km</p>
-    <p>Zasięg:</p>
+    <p><fa-icon [icon]="faRange"></fa-icon>Zasięg:</p>
     <p>{{vehicle.currentRange}}</p>
     <p class="unit">km</p>
-    <p>Paliwo:</p>
+    <p><fa-icon [icon]="faFuel"></fa-icon>Paliwo:</p>
     <p>{{vehicle.currentFuel}}</p>
     <p class="unit">%</p>
   </div>

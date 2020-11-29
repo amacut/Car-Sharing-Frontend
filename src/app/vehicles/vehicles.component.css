@@ -32,6 +32,9 @@
   padding-right: 3%;
 flex-basis: 30%;
 }
+.wrapper .params p fa-icon{
+  margin-right: 10px;
+}
 .wrapper .params p.unit{
   text-align: left;
 }
