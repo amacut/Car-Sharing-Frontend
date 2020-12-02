@@ -16,8 +16,8 @@ export class VehiclesComponent implements OnInit {
   public vehicles: VehicleResponseInterface[];
   public vehicle: VehicleResponseInterface;
 faFuel = faGasPump;
-faRange = faTachometerAlt;
-faDistance = faRoute;
+  faRange = faTachometerAlt;
+  faDistance = faRoute;
   constructor(public vehicleService: VehiclesService,
               private dialogRef: MatDialogRef<VehiclesComponent>) {
   }

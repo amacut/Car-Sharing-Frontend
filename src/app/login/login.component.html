@@ -1,0 +1,27 @@
+
+<div class="wrapper">
+  <img src="../../assets/images/banner.png" alt="">
+  <form #loginForm="ngForm" class="normal-form" (ngSubmit)="loginUser()">
+
+    <div class="controls-container">
+      <mat-form-field appearance="outline">
+        <input type="text" matInput placeholder="Email" name="email" [(ngModel)]="user.email" required #email = "ngModel" (invalid)="email.invalid && email.touched">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput [type]="hide ? 'password' : 'text'"placeholder="Hasło" name="password" [(ngModel)]="user.password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <small class="mat-error">{{msg}}</small>
+    </div>
+    <mat-checkbox>Zapamiętaj mnie</mat-checkbox>
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Zaloguj</button>
+    </div>
+  </form>
+  <p>Nie masz konta?</p>
+<!--  <button mat-raised-button color="warn" (click)="goToRegistration()">Zarejestruj się</button>-->
+  <button mat-raised-button color="warn" [routerLink]="'/registration'">Zarejestruj się</button>
+</div>

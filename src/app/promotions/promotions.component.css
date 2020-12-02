@@ -1,0 +1,12 @@
+body {
+
+}
+section {
+  position: absolute;
+  top: 1vw;
+  left: 16vw;
+  right: 1vw;
+  border: 5px solid black;
+  height: 95vh;
+  background-color: lightgreen;
+}

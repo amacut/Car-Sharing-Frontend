@@ -9,6 +9,7 @@ import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
+
 import {faPercent} from '@fortawesome/free-solid-svg-icons';
 
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Directive, OnInit, AfterViewInit} from '@angular/core';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 import {take} from 'rxjs/operators';
 import {VehiclesService} from '../vehicles/vehicles.service';
@@ -6,6 +6,8 @@ import {HttpClient} from '@angular/common/http';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {VehiclesComponent} from '../vehicles/vehicles.component';
 import {DirectionsService} from './directions.service';
+
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 
 @Component({
@@ -22,6 +24,9 @@ export class MapComponent implements OnInit {
   userIcon = 'https://img.icons8.com/office/40/000000/marker.png';
   vehicleIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon54.png';
 
+  origin: any;
+  destination: any;
+
   constructor(private readonly geolocation$: GeolocationService,
               private vehicleService: VehiclesService,
               private http: HttpClient,
@@ -30,11 +35,22 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userLocation();
-    this.addAllVehiclesToMap();
-    this.directions.getRoute();
+    // this.userLocation();
+    // this.addAllVehiclesToMap();
+    // this.getDirection();
+
   }
 
+  getDirection() {
+    this.origin = {
+      lat: 52.241646,
+      lng: 20.918474
+    };
+    this.destination = {
+      lat: 52.248804,
+      lng: 20.911253
+    };
+  }
 
   userLocation(): void {
     this.geolocation$.pipe(take(1)).subscribe(position => {
@@ -42,6 +58,7 @@ export class MapComponent implements OnInit {
       this.userLongitude = position.coords.longitude - 0.008;
     });
   }
+
   addAllVehiclesToMap(): void {
     let allVehicles = this.vehicleService.getVehicles();
     allVehicles.subscribe(response => {
@@ -72,6 +89,7 @@ export class MapComponent implements OnInit {
       this.dialog.open(VehiclesComponent, dialogConfig);
     });
   }
+
 }
 
 interface marker {

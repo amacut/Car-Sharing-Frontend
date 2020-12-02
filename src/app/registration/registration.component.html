@@ -1,0 +1,120 @@
+<div class="wrapper">
+  <h2>Rejestracja</h2>
+  <img src="../../assets/images/banner.png" alt="">
+  <form class="normal-form" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
+<!--    <small [class.mat-error]="msg.status==500">{{msg.message}}</small>-->
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile [colspan]="1" [rowspan]="3">
+        <div class="controls-container">
+          <mat-form-field>
+            <input type="text" matInput name="firstName" placeholder="Imię*" [(ngModel)]="user.firstName">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput name="lastName" placeholder="Nazwisko*" [(ngModel)]="user.lastName">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <div class="add-bottom-padding">
+            <mat-label>Płeć</mat-label>
+            <mat-radio-group name="gender" [(ngModel)]="user.gender">
+              <mat-radio-button value="1">Mężczyzna</mat-radio-button>
+              <mat-radio-button value="2">Kobieta</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field>
+            <input type="text" matInput name="email" placeholder="Email*" [(ngModel)]="user.email">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput name="phoneNumber" placeholder="Numer telefonu*" [(ngModel)]="user.phoneNumber">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" placeholder="Hasło*" [(ngModel)]="user.password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <input type="text" matInput name="birthDate" placeholder="Data urodzenia YYYY-MM-DD*" [(ngModel)]="user.birthDate">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="3">
+        <div class="controls-container">
+
+          <mat-form-field>
+            <input type="text" name="country" matInput placeholder="Kraj*" [(ngModel)]="user.country">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput name="street" placeholder="Ulica*" [(ngModel)]="user.street">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text"  matInput name="houseNoFlatNo" placeholder="Numer domu/Numer mieszkania*" [(ngModel)]="user.houseNoFlatNo">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text"  matInput name="postcode" placeholder="Kod pocztowy XX-XXX*" [(ngModel)]="user.postcode">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput name="city" placeholder="Miasto*" [(ngModel)]="user.city">
+            <mat-error>To pole nie może być puste</mat-error>
+          </mat-form-field>
+          <!--<div>
+            <input type="file" (change)="onFileSelected($event)">
+            <button type="button" (click)="onUpload()">Dodaj zdjęcie</button>
+          </div>-->
+          <!--<div class="add-bottom-padding">
+            <mat-checkbox class="company-checkbox" (change)="showCompanyDetails =! showCompanyDetails">Dane firmy
+            </mat-checkbox>
+          </div>-->
+        </div>
+      </mat-grid-tile>
+
+    <!--  <mat-grid-tile [colspan]="1" [rowspan]="3">
+        <div class="controls-container">
+          <div class="company-details" *ngIf="showCompanyDetails">
+            <p>Dane firmy:</p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Nazwa firmy">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Nip">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Kraj">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Ulica">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Numer domu/Numer mieszkania">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Kod pocztowy XX-XXX">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Miasto">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-grid-tile>-->
+
+      <mat-grid-tile class="buttons" [colspan]="2" [rowspan]="1">
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" >Zatwierdź</button>
+          <button mat-raised-button color="warn" type="reset">Wyczyść</button>
+        </div>
+        <div class="add-bottom-padding">
+          <mat-checkbox>Akceptuję regulamin</mat-checkbox>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

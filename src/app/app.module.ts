@@ -5,6 +5,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApiUrlInterceptor} from './interceptors/api-url.interceptor';
 import {MaterialModule} from './material/material.module';
 import {DirectionsService} from './map/directions.service';
+import {UserService} from './users/user.service';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -16,7 +17,18 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ConfigComponent } from './config/config.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MapKeyService } from './mapKey.service';
+import {AgmDirectionModule} from 'agm-direction';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { UserComponent } from './users/user.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatInputModule} from '@angular/material/input';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -27,6 +39,12 @@ import { MapKeyService } from './mapKey.service';
     VehiclesComponent,
     ConfigComponent,
     PromotionsComponent,
+    UserComponent,
+    LoginComponent,
+    AdminComponent,
+    RegistrationComponent,
+    LoginsuccessComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -35,13 +53,22 @@ import { MapKeyService } from './mapKey.service';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      apiKey: MapKeyService.mapKey
+      apiKey: 'AIzaSyDGjd_7MqYeQzmQpI-13UtkCXSf48HXD_k',
+      libraries: ['geometry']
     }),
-    BrowserAnimationsModule
+    AgmDirectionModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule,
+    // MatGridListModule,
+    // MatInputModule
   ],
   providers: [
     DirectionsService,
-    {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
+    UserService,
+    // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents: [VehiclesComponent]

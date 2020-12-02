@@ -1,16 +1,35 @@
-import { NgModule } from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {MapComponent} from './map/map.component';
-import {PromotionsComponent} from './promotions/promotions.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {AdminComponent} from './admin/admin.component';
+import {MenuComponent} from './menu/menu.component';
+import {LoginsuccessComponent} from './loginsuccess/loginsuccess.component';
+import {RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MapComponent
+    component: LoginComponent
   },
   {
-    path: 'promotions',
-    component: PromotionsComponent
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'loginsuccess',
+    component: LoginsuccessComponent
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent
+  },
+  {
+    path: 'user',
+    component: MenuComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   }
 ];
 
@@ -19,4 +38,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
