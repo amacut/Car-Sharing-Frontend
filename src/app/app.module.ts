@@ -21,12 +21,9 @@ import {AgmDirectionModule} from 'agm-direction';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UserComponent } from './users/user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatInputModule} from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -43,8 +40,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     AdminComponent,
     RegistrationComponent,
-    LoginsuccessComponent,
-
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,13 @@
 <div class="wrapper">
   <h2>Rejestracja</h2>
-  <img src="../../assets/images/banner.png" alt="">
+  <div class="back-to-login">
+    <img src="../../assets/images/banner.png" alt="">
+    <div class="back">
+    <p>Masz już konto?</p>
+    <a href="login">Zaloguj się</a>
+    </div>
+  </div>
+
   <form class="normal-form" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
 <!--    <small [class.mat-error]="msg.status==500">{{msg.message}}</small>-->
     <mat-grid-list cols="2" rowHeight="200px">

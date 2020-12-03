@@ -21,12 +21,36 @@ p {
   font-size: 18px;
   font-weight: bold;
 }
-img {
-  position: absolute;
-  top:5%;
-  left: 3%;
-
+.back-to-login {
+    position: absolute;
+    top:5%;
+    left: 3%;
 }
+
+.back-to-login .back {
+  width: 50%;
+  margin: 50px auto;
+  text-align: center;
+}
+.back-to-login a{
+  display: block;
+  width: 70%;
+  margin: 30px auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 20px;
+  color: white;
+  border: 5px darkgreen;
+  letter-spacing: 1px;
+  background-color: green;
+  text-decoration: none;
+  transition: .1s;
+}
+
+.back-to-login a:hover{
+  box-shadow: 0 0 5px 0 black;
+}
+
 .normal-form {
   position: absolute;
   top: 13%;
@@ -59,7 +83,10 @@ mat-radio-group mat-radio-button {
 }
 
 button {
-  margin: 0 10%;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin: 0 0 0 30px;
+  padding: 5px 20px;
 }
 
 /*.company-checkbox {*/

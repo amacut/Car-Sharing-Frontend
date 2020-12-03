@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {MenuComponent} from './menu/menu.component';
-import {LoginsuccessComponent} from './loginsuccess/loginsuccess.component';
 import {RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
@@ -14,10 +13,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'loginsuccess',
-    component: LoginsuccessComponent
   },
   {
     path: 'registration',

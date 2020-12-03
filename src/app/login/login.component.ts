@@ -5,6 +5,7 @@ import {NgForm} from '@angular/forms';
 import {RegistrationService} from '../registration.service';
 import {User} from '../user';
 import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -18,12 +19,17 @@ export class LoginComponent implements OnInit {
   msg = '';
 
   constructor(private service: RegistrationService,
-              private router: Router) {
+              private router: Router,
+              private http: HttpClient) {
   }
 
   ngOnInit(): void {
   }
 
+ /* login(email: string, password: string){
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(email + ':' + password)});
+    this.http.get('http://localhost:8080/', {headers, responseType: 'text' as 'json'});
+  }*/
   loginUser() {
     this.service.loginUserFromRemote(this.user).subscribe(
       data => {
