@@ -13,7 +13,7 @@ export class ApiUrlInterceptor implements HttpInterceptor {
     const newRequest = request.clone({
       headers: new HttpHeaders({
         Authorization: '12345',
-        // 'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*'
       })
     });
     return next.handle(newRequest);

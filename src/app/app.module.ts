@@ -25,6 +25,9 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainPageComponent } from './mainpage/main-page.component';
+import {CookieService} from 'ngx-cookie-service';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 
 
@@ -40,6 +43,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     AdminComponent,
     RegistrationComponent,
+    MainPageComponent,
+    UserAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDGjd_7MqYeQzmQpI-13UtkCXSf48HXD_k',
+      // apiKey: 'AIzaSyDqIVUA0rKs9y4qeXhzJXps67OmHoab4Qo',
       libraries: ['geometry']
     }),
     AgmDirectionModule,
@@ -63,6 +68,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     DirectionsService,
     UserService,
+    CookieService,
+    LoginComponent,
+    UserAccountComponent
     // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],

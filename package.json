@@ -33,10 +33,12 @@
     "@ng-web-apis/common": "^1.9.0",
     "@ng-web-apis/geolocation": "^1.0.3",
     "agm-direction": "^0.8.8",
+    "angular-cookies": "^1.8.2",
     "angular-google-maps": "^2.4.1",
     "bootstrap": "^4.5.0",
     "cors": "^2.8.5",
     "moment": "^2.29.1",
+    "ngx-cookie-service": "^11.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

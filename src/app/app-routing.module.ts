@@ -4,6 +4,8 @@ import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {MenuComponent} from './menu/menu.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {MainPageComponent} from './mainpage/main-page.component';
+import {UserAccountComponent} from './user-account/user-account.component';
 
 const routes: Routes = [
   {
@@ -19,8 +21,12 @@ const routes: Routes = [
     component: RegistrationComponent
   },
   {
-    path: 'user',
-    component: MenuComponent
+    path: 'user/mainpage',
+    component: MainPageComponent
+  },
+  {
+    path: 'user/account',
+    component: UserAccountComponent
   },
   {
     path: 'admin',

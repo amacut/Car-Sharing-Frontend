@@ -4,8 +4,10 @@ import {UserService} from '../users/user.service';
 import {NgForm} from '@angular/forms';
 import {RegistrationService} from '../registration.service';
 import {User} from '../user';
+import {UsersResponseInterface} from '../users/usersResponseInterface';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Component({
@@ -17,30 +19,41 @@ export class LoginComponent implements OnInit {
   hide = true;
   user = new User();
   msg = '';
+  userCookie = null;
+  public userResponse: UsersResponseInterface;
 
   constructor(private service: RegistrationService,
               private router: Router,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private cookie: CookieService) {
   }
 
   ngOnInit(): void {
   }
 
- /* login(email: string, password: string){
-    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(email + ':' + password)});
-    this.http.get('http://localhost:8080/', {headers, responseType: 'text' as 'json'});
-  }*/
+  /* login(email: string, password: string){
+     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(email + ':' + password)});
+     this.http.get('http://localhost:8080/', {headers, responseType: 'text' as 'json'});
+   }*/
   loginUser() {
     this.service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log('response recieved');
-        this.router.navigate(['/loginsuccess']);
+        this.userResponse = data;
+        this.cookie.set('email', this.userResponse.email);
+        // console.log(this.userResponse);
+        this.router.navigate(['/user/mainpage']);
       },
       error => {
         console.log('exception occured');
         this.msg = 'Zły email lub hasło.';
       }
     );
+  }
+  logoutUser() {
+    console.log('wylogowanie');
+    this.router.navigate(['/']);
+    this.cookie.deleteAll();
   }
 
   goToRegistration() {

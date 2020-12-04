@@ -34,6 +34,7 @@ nav ul li a {
   letter-spacing: 1px;
   background-color: white;
   color: black;
+  cursor: pointer;
   text-decoration: none;
 
 }

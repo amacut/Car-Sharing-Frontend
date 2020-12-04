@@ -1,7 +1,17 @@
 * {
   margin: 0;
   padding: 0;
-  /*box-sizing: border-box;*/
+  box-sizing: border-box;
+}
+
+section {
+  position: absolute;
+  top: 1vw;
+  left: 16vw;
+  right: 1vw;
+  border: 5px solid black;
+  height: 95vh;
+  background-color: #D9D9D9;
 }
 
 div.map {
@@ -10,11 +20,10 @@ div.map {
 
 agm-map {
   position: absolute;
-  top: 1vw;
-  left: 16vw;
-  right: 1vw;
-  border: 5px solid black;
-  height: 93vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 94vh;
 }
 
 div.user-location {
