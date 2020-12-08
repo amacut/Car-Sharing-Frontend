@@ -1,0 +1,39 @@
+<section class="user-account">
+  <h2>Moje konto</h2>
+  <div class="data-wrap">
+ <div class="personal-data">
+     <h3>Dane osobowe</h3>
+   <p class="label">Imię</p>
+     <p class="info">{{user.firstName}}<fa-icon [icon]="editIcon"></fa-icon></p>
+     <p class="label">Nazwisko</p>
+     <p class="info">{{user.lastName}}<fa-icon [icon]="editIcon"></fa-icon></p>
+     <p class="label">Płeć</p>
+     <p class="info">{{user.gender}}<fa-icon [icon]="editIcon"></fa-icon></p>
+     <p class="label">Data urodzenia</p>
+     <p class="info">{{user.birthDate}}<fa-icon [icon]="editIcon"></fa-icon></p>
+ </div>
+  <div class="login-data">
+    <h3>Dane logowania</h3>
+    <p class="label">Email</p>
+    <p class="info">{{user.email}}<fa-icon [icon]="editIcon"></fa-icon></p>
+    <p class="label">Hasło</p>
+    <p class="info">{{user.password}}<fa-icon [icon]="editIcon"></fa-icon></p>
+  </div>
+  <div class="contact-data">
+    <h3>Dane kontaktowe</h3>
+    <p class="label">Numer telefonu</p>
+    <p class="info">{{user.phoneNumber}}<fa-icon [icon]="editIcon"></fa-icon></p>
+    <p class="label">Kraj</p>
+    <p class="info">{{user.country}}<fa-icon [icon]="editIcon"></fa-icon></p>
+    <p class="label">Ulica</p>
+    <p class="info">{{user.street}}<fa-icon [icon]="editIcon"></fa-icon></p>
+    <p class="label">Numer domu/mieszkania</p>
+    <p class="info">{{user.houseNoFlatNo}}<fa-icon [icon]="editIcon"></fa-icon></p>
+    <p class="label">Kod pocztowy</p>
+    <p class="info">{{user.postcode}}<fa-icon [icon]="editIcon"></fa-icon></p>
+    <p class="label">Miasto</p>
+    <p class="info">{{user.city}}<fa-icon [icon]="editIcon"></fa-icon></p>
+  </div>
+  </div>
+</section>
+<app-menu></app-menu>
