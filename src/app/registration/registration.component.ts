@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../user';
-import {RegistrationService} from '../registration.service';
+import {User} from '../users/user';
+import {RegistrationService} from './registration.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
@@ -18,16 +18,10 @@ export class RegistrationComponent implements OnInit {
               private router: Router,
               private http: HttpClient) {
   }
-  model: NgbDateStruct;
+
   hide = true;
   user = new User();
   msg = '';
-
-  showCompanyDetails = false;
-
-  toogleForm(): void {
-    this.showCompanyDetails = !this.showCompanyDetails;
-  }
 
   ngOnInit(): void {
   }

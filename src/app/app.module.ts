@@ -22,12 +22,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { UserComponent } from './users/user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainPageComponent } from './mainpage/main-page.component';
 import {CookieService} from 'ngx-cookie-service';
-import { UserAccountComponent } from './user-account/user-account.component';
+import {LoginService} from './login/login.service';
+import {UserAccountComponent} from './user-account/user-account.component';
 
 
 
@@ -41,10 +41,9 @@ import { UserAccountComponent } from './user-account/user-account.component';
     PromotionsComponent,
     UserComponent,
     LoginComponent,
-    AdminComponent,
     RegistrationComponent,
     MainPageComponent,
-    UserAccountComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +69,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
     UserService,
     CookieService,
     LoginComponent,
+    LoginService,
     UserAccountComponent
     // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],

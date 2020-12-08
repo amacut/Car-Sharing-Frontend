@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
 import {UserService} from '../users/user.service';
 import {NgForm} from '@angular/forms';
-import {RegistrationService} from '../registration.service';
-import {User} from '../user';
-import {UsersResponseInterface} from '../users/usersResponseInterface';
+import {RegistrationService} from '../registration/registration.service';
+import {User} from '../users/user';
+import {UserResponseInterface} from '../users/userResponseInterface';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   user = new User();
   msg = '';
   userCookie = null;
-  public userResponse: UsersResponseInterface;
+  public userResponse: UserResponseInterface;
 
   constructor(private service: RegistrationService,
               private router: Router,

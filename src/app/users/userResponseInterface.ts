@@ -1,7 +1,8 @@
-export interface UsersResponseInterface {
+export interface UserResponseInterface {
   id: number;
   firstName: string;
   lastName: string;
+  gender: string;
   email: string;
   phoneNumber: string;
   password: string;

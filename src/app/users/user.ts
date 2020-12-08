@@ -1,5 +1,3 @@
-import {DatePipe} from '@angular/common';
-
 export class User {
   id: number;
   firstName: string;
@@ -15,6 +13,6 @@ export class User {
   postcode: string;
   city: string;
 
-  constructor(){
+  constructor() {
   }
 }
