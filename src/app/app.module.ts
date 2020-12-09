@@ -28,9 +28,12 @@ import { MainPageComponent } from './mainpage/main-page.component';
 import {CookieService} from 'ngx-cookie-service';
 import {LoginService} from './login/login.service';
 import {UserAccountComponent} from './user-account/user-account.component';
+import {EnvServiceFactory, EnvServiceProvider} from './env.service.provider';
 
 
 
+
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,7 @@ import {UserAccountComponent} from './user-account/user-account.component';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      // apiKey: 'AIzaSyDqIVUA0rKs9y4qeXhzJXps67OmHoab4Qo',
+      // apiKey: EnvServiceFactory().apiUrl,
       libraries: ['geometry']
     }),
     AgmDirectionModule,
@@ -70,7 +73,8 @@ import {UserAccountComponent} from './user-account/user-account.component';
     CookieService,
     LoginComponent,
     LoginService,
-    UserAccountComponent
+    UserAccountComponent,
+    EnvServiceProvider
     // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],

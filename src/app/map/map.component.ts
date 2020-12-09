@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.userLocation();
+    this.userLocation();
     // this.addAllVehiclesToMap();
     // this.getDirection();
 
