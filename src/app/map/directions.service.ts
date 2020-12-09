@@ -14,7 +14,7 @@ key = 'https://maps.googleapis.com/maps/api/directions/jsonorigin=52.241846,20.9
   }
   getRoute(): void {
     console.log('działa');
-    this.http.get(this.directionsApi + 'origin=52.241846,20.920517&destination=52.236675,20.912138&key=' + 'AIzaSyDGjd_7MqYeQzmQpI-13UtkCXSf48HXD_k', {
+    this.http.get(this.directionsApi + 'origin=52.241846,20.920517&destination=52.236675,20.912138&key=', {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*'
       })
