@@ -65,8 +65,6 @@ import { TrashComponent } from './trash/trash.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    // MatGridListModule,
-    // MatInputModule
   ],
   providers: [
     DirectionsService,

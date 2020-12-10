@@ -6,10 +6,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class DirectionsService {
-  'https://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&key=AIzaSyDGjd_7MqYeQzmQpI-13UtkCXSf48HXD_k'
-  // https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=AIzaSyDGjd_7MqYeQzmQpI-13UtkCXSf48HXD_k
+ /* 'https://maps.googleapis.com/maps/api/directions/json?origin=Chicago,' +
+  'IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&key='*/
+  // https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=
   directionsApi = 'https://maps.googleapis.com/maps/api/directions/json?';
-key = 'https://maps.googleapis.com/maps/api/directions/jsonorigin=52.241846,20.920517&destination=52.236675,20.912138&key=AIzaSyDGjd_7MqYeQzmQpI-13UtkCXSf48HXD_k';
+key = 'https://maps.googleapis.com/maps/api/directions/jsonorigin=52.241846,20.920517&destination=52.236675,20.912138&key=';
   constructor(private http: HttpClient) {
   }
   getRoute(): void {
