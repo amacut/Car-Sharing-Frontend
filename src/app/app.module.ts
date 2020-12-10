@@ -33,7 +33,6 @@ import { TrashComponent } from './trash/trash.component';
 
 
 
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
