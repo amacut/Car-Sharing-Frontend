@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from './login.service';
 import {UserService} from '../users/user.service';
-import {NgForm} from '@angular/forms';
-import {RegistrationService} from '../registration/registration.service';
 import {User} from '../users/user';
 import {UserResponseInterface} from '../users/userResponseInterface';
 import {Router} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -22,7 +20,7 @@ export class LoginComponent implements OnInit {
   userCookie = null;
   public userResponse: UserResponseInterface;
 
-  constructor(private service: RegistrationService,
+  constructor(private service: UserService,
               private router: Router,
               private http: HttpClient,
               private cookie: CookieService) {
@@ -30,11 +28,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  // form: FormGroup = new FormGroup({
+  //   email: new FormControl('', Validators.required),
+  //   password: new FormControl('', Validators.required),
+  // });
 
-  /* login(email: string, password: string){
-     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(email + ':' + password)});
-     this.http.get('http://localhost:8080/', {headers, responseType: 'text' as 'json'});
-   }*/
   loginUser() {
     this.service.loginUserFromRemote(this.user).subscribe(
       data => {
@@ -50,6 +48,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
   logoutUser() {
     console.log('wylogowanie');
     this.router.navigate(['/']);

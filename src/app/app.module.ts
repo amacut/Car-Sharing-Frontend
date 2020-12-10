@@ -26,9 +26,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainPageComponent } from './mainpage/main-page.component';
 import {CookieService} from 'ngx-cookie-service';
-import {LoginService} from './login/login.service';
-import {UserAccountComponent} from './user-account/user-account.component';
-import {EnvServiceFactory, EnvServiceProvider} from './env.service.provider';
+import {EnvServiceProvider} from './env.service.provider';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { TrashComponent } from './trash/trash.component';
 
 
 
@@ -46,7 +46,8 @@ import {EnvServiceFactory, EnvServiceProvider} from './env.service.provider';
     LoginComponent,
     RegistrationComponent,
     MainPageComponent,
-    UserAccountComponent
+    EditUserComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,
@@ -72,12 +73,11 @@ import {EnvServiceFactory, EnvServiceProvider} from './env.service.provider';
     UserService,
     CookieService,
     LoginComponent,
-    LoginService,
-    UserAccountComponent,
+    UserService,
     EnvServiceProvider
     // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [VehiclesComponent]
+  entryComponents: [VehiclesComponent, EditUserComponent]
 })
 export class AppModule { }

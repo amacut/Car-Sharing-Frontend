@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent} from '../login/login.component';
-import {UserAccountComponent} from '../user-account/user-account.component';
+
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import {faHistory} from '@fortawesome/free-solid-svg-icons';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
@@ -32,8 +32,7 @@ export class MenuComponent implements OnInit {
   faLogOut = faPowerOff;
   faPromo = faPercent;
 
-  constructor(public loginComp: LoginComponent,
-              public userAccount: UserAccountComponent) { }
+  constructor(public loginComp: LoginComponent) { }
 
   ngOnInit(): void {
   }

@@ -1,13 +1,8 @@
 <div class="wrapper">
-  <h2>Rejestracja</h2>
-  <div class="back-to-login">
-    <img src="../../assets/images/banner.png" alt="">
-    <div class="back">
-      <p>Masz już konto?</p>
-      <a [routerLink]="'/login'">Zaloguj się</a>
-    </div>
-  </div>
-  <form [formGroup]="service.form" class="normal-form" (submit)="registerUser()">
+  <h2>Dane użytkownika</h2>
+  <fa-icon [icon]="exit" (click)="close()"></fa-icon>
+  <form [formGroup]="service.form" class="normal-form" (submit)="updateUserDetails()">
+    <input type="hidden" formControlName="id">
     <!--    <small [class.mat-error]="msg.status==500">{{msg.message}}</small>-->
     <mat-grid-list cols="2" rowHeight="200px">
       <mat-grid-tile [colspan]="1" [rowspan]="3">
@@ -23,8 +18,8 @@
           <div class="add-bottom-padding">
             <mat-label>Płeć *</mat-label>
             <mat-radio-group formControlName="gender">
-              <mat-radio-button value="Mężczyzna">Mężczyzna</mat-radio-button>
-              <mat-radio-button value="Kobieta">Kobieta</mat-radio-button>
+              <mat-radio-button value="mężczyzna">Mężczyzna</mat-radio-button>
+              <mat-radio-button value="kobieta">Kobieta</mat-radio-button>
             </mat-radio-group>
           </div>
           <mat-form-field>
@@ -78,10 +73,12 @@
 
       <mat-grid-tile class="buttons" [colspan]="2" [rowspan]="1">
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" >Zatwierdź</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Zatwierdź</button>
           <button mat-raised-button color="warn" type="reset">Wyczyść</button>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
   </form>
 </div>
+
+

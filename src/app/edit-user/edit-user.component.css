@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div.wrapper {
+  position: relative;
+  height: 75vh;
+  background-color: #D9D9D9;
+  overflow: hidden;
+}
+h2 {
+  position: absolute;
+  top: 5%;
+  left: 43%;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
+fa-icon {
+  position: absolute;
+  color: darkgray;
+  top: 1%;
+  right: 1%;
+  font-size: 40px;
+  transition: .2s;
+}
+
+fa-icon:hover {
+  color: darkred;
+}
+
+.normal-form {
+  position: absolute;
+  top: 0;
+  left: 55%;
+  transform: translateX(-50%);
+  width: 60%;
+  /*background-color: gray;*/
+}
+
+.controls-container{
+  /*background-color: cadetblue;*/
+  /*width: 80%;*/
+  /*padding: 5%;*/
+}
+
+mat-form-field {
+  width: 70%;
+  padding: 1% 0;
+}
+.add-bottom-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+mat-radio-group mat-radio-button {
+  margin-left: 30px;
+}
+.button-row {
+  margin-bottom: 150px;
+}
+
+button {
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin: 0 0 0 30px;
+  padding: 5px 20px;
+}
+
