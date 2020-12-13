@@ -9,6 +9,7 @@ import {LoginComponent} from '../login/login.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditUserComponent} from '../edit-user/edit-user.component';
 import {NotificationService} from '../notification.service';
+import {DialogService} from '../confirm-dialog/dialog.service';
 
 @Component({
   selector: 'app-user',
@@ -25,7 +26,8 @@ export class UserComponent implements OnInit {
               private loginComponent: LoginComponent,
               private router: Router,
               private dialog: MatDialog,
-              private notification: NotificationService) {
+              private notification: NotificationService,
+              private dialogService: DialogService) {
   }
 
   ngOnInit(): void {
@@ -58,17 +60,19 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser() {
-    this.service.deleteUser(this.user.email).subscribe(
-      data => {
-        console.log('ok');
-        this.loginComponent.logoutUser();
-        this.notification.success('Usunięto użytkownika');
-      },
-      error1 => {
-        console.log('błąd');
+    this.dialogService.openConfirmDialog('Czy jesteś pewny, że chcesz usunąć konto?').afterClosed().subscribe( res => {
+      if(res) {
+        this.service.deleteUser(this.user.email).subscribe(
+          data => {
+            console.log('ok');
+            this.loginComponent.logoutUser();
+            this.notification.success('Usunięto użytkownika');
+          },
+          error1 => {
+            console.log('błąd');
+          });
       }
-
-    );
+    });
 
   }
 }

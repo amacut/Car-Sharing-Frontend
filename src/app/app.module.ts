@@ -29,6 +29,13 @@ import {CookieService} from 'ngx-cookie-service';
 import {EnvServiceProvider} from './env.service.provider';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { TrashComponent } from './trash/trash.component';
+import {DatePipe} from '@angular/common';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { RentalsHistoryComponent } from './rentals-history/rentals-history.component';
+import { ActiveBookingComponent } from './active-booking/active-booking.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { GuidesComponent } from './guides/guides.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -46,7 +53,13 @@ import { TrashComponent } from './trash/trash.component';
     RegistrationComponent,
     MainPageComponent,
     EditUserComponent,
-    TrashComponent
+    TrashComponent,
+    ConfirmDialogComponent,
+    RentalsHistoryComponent,
+    ActiveBookingComponent,
+    PriceListComponent,
+    GuidesComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,10 +84,11 @@ import { TrashComponent } from './trash/trash.component';
     CookieService,
     LoginComponent,
     UserService,
+    DatePipe,
     EnvServiceProvider
     // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [VehiclesComponent, EditUserComponent]
+  entryComponents: [VehiclesComponent, EditUserComponent, ConfirmDialogComponent]
 })
 export class AppModule { }

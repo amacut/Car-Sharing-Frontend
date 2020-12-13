@@ -3,6 +3,7 @@ import {User} from '../users/user';
 import {Router} from '@angular/router';
 import {UserService} from '../users/user.service';
 import {NotificationService} from '../notification.service';
+import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -13,7 +14,8 @@ import {NotificationService} from '../notification.service';
 export class RegistrationComponent implements OnInit {
   constructor(public service: UserService,
               private router: Router,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private datePipe: DatePipe) {
   }
 
   hide = true;
@@ -23,9 +25,13 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   registerUser() {
     if (this.service.form.valid){
-      this.service.registerUserFromRemote(this.service.form.value).subscribe(
+      const registerFormValue = this.service.form.value;
+      registerFormValue.birthDate = this.datePipe.transform(registerFormValue.birthDate, 'yyyy-MM-dd');
+      console.log(registerFormValue);
+      this.service.registerUserFromRemote(registerFormValue).subscribe(
         data => {
           console.log('response received');
           this.msg = 'Registration successful';

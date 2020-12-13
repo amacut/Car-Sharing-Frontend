@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.userResponse = data;
         this.cookie.set('email', this.userResponse.email);
         // console.log(this.userResponse);
-        this.router.navigate(['/user/mainpage']);
+        this.router.navigate(['/mainpage']);
       },
       error => {
         console.log('exception occured');

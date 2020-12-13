@@ -3,7 +3,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {UserResponseInterface} from './userResponseInterface';
 import {User} from './user';
-import {Observable} from 'rxjs';
+import {Observable, pipe} from 'rxjs';
 import {LoginComponent} from '../login/login.component';
 
 @Injectable({

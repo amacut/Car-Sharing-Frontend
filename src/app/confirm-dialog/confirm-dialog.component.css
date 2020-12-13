@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+div .content-container{
+  margin: 5px 5px 15px 5px;
+  color: #8f9cb5;
+  display: flex;
+}
+div #close-icon{
+  margin-left: auto;
+  order: 2;
+  font-weight: bolder;
+}
+div #close-icon:hover{
+  cursor: pointer;
+}
+
+div #no-button{
+  height: 50px;
+  width: 50%;
+  background-color: darkred;
+  color:white;
+  border-radius: 0;
+}
+
+div #yes-button{
+  height: 50px;
+  width: 50%;
+  background-color: royalblue;
+  color:white;
+  border-radius: 0;
+}
+
+div span.content-span{
+  padding:  35px 16px;
+  text-align: center;
+  font-size: 20px;
+}
