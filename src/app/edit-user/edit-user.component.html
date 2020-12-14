@@ -39,7 +39,9 @@
             <mat-error>To pole nie może być puste</mat-error>
           </mat-form-field>
           <mat-form-field appearance="standard">
-            <input type="text" formControlName="birthDate" matInput name="birthDate" placeholder="Data urodzenia (YYYY-MM-DD) *" required>
+            <input type="text" formControlName="birthDate" [matDatepicker]="picker" matInput placeholder="Data urodzenia (YYYY-MM-DD) *">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
             <mat-error>To pole nie może być puste</mat-error>
           </mat-form-field>
         </div>

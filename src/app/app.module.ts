@@ -26,7 +26,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainPageComponent } from './mainpage/main-page.component';
 import {CookieService} from 'ngx-cookie-service';
-import {EnvServiceProvider} from './env.service.provider';
+import {EnvServiceFactory, EnvServiceProvider} from './env.service.provider';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { TrashComponent } from './trash/trash.component';
 import {DatePipe} from '@angular/common';
@@ -68,8 +68,8 @@ import { SettingsComponent } from './settings/settings.component';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      // apiKey: EnvServiceFactory().apiUrl,
-      libraries: ['geometry']
+      apiKey: EnvServiceFactory().apiUrl,
+      libraries: ['geometry', 'places']
     }),
     AgmDirectionModule,
     BrowserAnimationsModule,

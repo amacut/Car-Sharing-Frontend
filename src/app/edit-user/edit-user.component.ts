@@ -4,6 +4,7 @@ import {NotificationService} from '../notification.service';
 import {MatDialogRef} from '@angular/material/dialog';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import {DialogService} from '../confirm-dialog/dialog.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,7 +16,8 @@ export class EditUserComponent implements OnInit {
   constructor(public service: UserService,
               private notificationService: NotificationService,
               private dialog: MatDialogRef<EditUserComponent>,
-              private dialogService: DialogService) {
+              private dialogService: DialogService,
+              private datePipe: DatePipe) {
   }
 
   hide = true;
@@ -30,7 +32,9 @@ export class EditUserComponent implements OnInit {
   updateUserDetails() {
     if (this.service.form.valid) {
       console.log(this.id);
-      this.service.updateUser(this.id, this.service.form.value).subscribe(
+      const updateFormValue = this.service.form.value;
+      updateFormValue.birthDate = this.datePipe.transform(updateFormValue.birthDate, 'yyyy-MM-dd');
+      this.service.updateUser(this.id, updateFormValue).subscribe(
         data => {
           console.log('response received');
           this.msg = 'Registration successful';

@@ -30,7 +30,6 @@ export class RegistrationComponent implements OnInit {
     if (this.service.form.valid){
       const registerFormValue = this.service.form.value;
       registerFormValue.birthDate = this.datePipe.transform(registerFormValue.birthDate, 'yyyy-MM-dd');
-      console.log(registerFormValue);
       this.service.registerUserFromRemote(registerFormValue).subscribe(
         data => {
           console.log('response received');
