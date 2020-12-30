@@ -1,7 +1,7 @@
 <div class="wrapper">
   <h2>Dane użytkownika</h2>
-  <fa-icon [icon]="exit" (click)="close()"></fa-icon>
-  <form [formGroup]="service.form" class="normal-form" (submit)="updateUserDetails()">
+  <fa-icon [icon]="exitIcon" (click)="close()"></fa-icon>
+  <form [formGroup]="service.userForm" class="normal-form" (submit)="updateUserDetails()">
     <input type="hidden" formControlName="id">
     <!--    <small [class.mat-error]="msg.status==500">{{msg.message}}</small>-->
     <mat-grid-list cols="2" rowHeight="200px">
@@ -75,7 +75,7 @@
 
       <mat-grid-tile class="buttons" [colspan]="2" [rowspan]="1">
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Zatwierdź</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.userForm.invalid">Zatwierdź</button>
           <button mat-raised-button color="warn" type="reset">Wyczyść</button>
         </div>
       </mat-grid-tile>

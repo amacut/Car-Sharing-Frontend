@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {UserResponseInterface} from './userResponseInterface';
-import {User} from './user';
+import {User} from '../model/user';
 import {Observable, pipe} from 'rxjs';
 import {LoginComponent} from '../login/login.component';
 
@@ -11,32 +10,12 @@ import {LoginComponent} from '../login/login.component';
 })
 export class UserService {
 
-  mainUrl = 'http://localhost:8080/';
-
   constructor(private http: HttpClient) {
   }
-  public registerUserFromRemote(user: User): Observable<any> {
-    return this.http.post<any>(this.mainUrl + 'registration', user);
-  }
 
-  public loginUserFromRemote(user: User): Observable<any> {
-    return this.http.post<any>(this.mainUrl + 'login', user);
-  }
+  mainUrl = 'http://localhost:8080/';
 
-  public getUserByEmail(email: string): Observable<any> {
-    return this.http.get<User>(this.mainUrl + 'user/' + email);
-  }
-
-  public updateUser(id, updateRequest): Observable<any> {
-    return this.http.patch<User>(this.mainUrl + id, updateRequest);
-  }
-
-  public deleteUser(email: string) {
-    console.log(email);
-    return this.http.delete(this.mainUrl + email);
-  }
-
-  form: FormGroup = new FormGroup({
+  userForm: FormGroup = new FormGroup({
     id: new FormControl(null),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -51,8 +30,29 @@ export class UserService {
     postcode: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
   });
-  initializeFormGroup() {
-    this.form.setValue({
+
+  public registerUser(user: User): Observable<User> {
+    return this.http.post<any>(this.mainUrl + 'registration', user);
+  }
+// spróbować jako get?
+  public loginUser(user: User): Observable<User> {
+    return this.http.post<any>(this.mainUrl + 'login', user);
+  }
+
+  public getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(this.mainUrl + 'user/' + email);
+  }
+
+  public updateUser(id, updateRequest): Observable<User> {
+    return this.http.patch<User>(this.mainUrl + id, updateRequest);
+  }
+
+  public deleteUser(email: string): Observable<any> {
+    console.log(email);
+    return this.http.delete<User>(this.mainUrl + email);
+  }
+  initializeFormGroup(): void {
+    this.userForm.setValue({
       id: null,
       firstName: '',
       lastName: '',
@@ -69,8 +69,8 @@ export class UserService {
     });
   }
 
-  populateForm(user) {
-    this.form.setValue(user);
+  populateForm(user): void {
+    this.userForm.setValue(user);
     console.log(user);
   }
 }

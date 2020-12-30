@@ -1,4 +1,4 @@
-export interface PromotionsResponseInterface {
+export interface PromotionInterface {
   id: number;
   name: string;
   code: string;

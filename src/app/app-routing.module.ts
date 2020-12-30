@@ -3,13 +3,17 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {MainPageComponent} from './mainpage/main-page.component';
-import {UserComponent} from './users/user.component';
+
 import {PromotionsComponent} from './promotions/promotions.component';
 import {SettingsComponent} from './settings/settings.component';
 import {RentalsHistoryComponent} from './rentals-history/rentals-history.component';
 import {ActiveBookingComponent} from './active-booking/active-booking.component';
 import {PriceListComponent} from './price-list/price-list.component';
 import {GuidesComponent} from './guides/guides.component';
+import {MapDestinationComponent} from './map/map-destination/map-destination.component';
+import {UserAccountDetailsComponent} from './user-account-details/user-account-details.component';
+
+
 
 const routes: Routes = [
   {
@@ -26,7 +30,11 @@ const routes: Routes = [
   },
   {
     path: 'mainpage',
-    component: MainPageComponent
+    component: MainPageComponent,
+  },
+  {
+    path: 'map',
+    component: MapDestinationComponent
   },
   {
     path: 'rentals-history',
@@ -38,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    component: UserComponent
+    component: UserAccountDetailsComponent
   },
   {
     path: 'price-list',

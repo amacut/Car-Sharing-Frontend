@@ -1,4 +1,4 @@
-export interface UserResponseInterface {
+export class User {
   id: number;
   firstName: string;
   lastName: string;
@@ -12,4 +12,6 @@ export interface UserResponseInterface {
   houseNoFlatNo: string;
   postcode: string;
   city: string;
+  constructor() {
+  }
 }

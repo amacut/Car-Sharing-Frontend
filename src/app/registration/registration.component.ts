@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../users/user';
 import {Router} from '@angular/router';
-import {UserService} from '../users/user.service';
-import {NotificationService} from '../notification.service';
+import {UserService} from '../services/user.service';
+import {NotificationService} from '../services/notification.service';
 import {DatePipe} from '@angular/common';
 
 
@@ -19,7 +18,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   hide = true;
-  user = new User();
   msg = '';
 
   ngOnInit(): void {
@@ -27,16 +25,16 @@ export class RegistrationComponent implements OnInit {
 
 
   registerUser() {
-    if (this.service.form.valid){
-      const registerFormValue = this.service.form.value;
+    if (this.service.userForm.valid){
+      const registerFormValue = this.service.userForm.value;
       registerFormValue.birthDate = this.datePipe.transform(registerFormValue.birthDate, 'yyyy-MM-dd');
-      this.service.registerUserFromRemote(registerFormValue).subscribe(
+      this.service.registerUser(registerFormValue).subscribe(
         data => {
           console.log('response received');
           this.msg = 'Registration successful';
           this.router.navigate(['/login']);
           this.notificationService.success('Zarejestrowano użytkownika!');
-          this.service.form.reset();
+          this.service.userForm.reset();
           this.service.initializeFormGroup();
         },
         error => {

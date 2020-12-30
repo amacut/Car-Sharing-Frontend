@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../users/user.service';
-import {NotificationService} from '../notification.service';
+import {UserService} from '../services/user.service';
+import {NotificationService} from '../services/notification.service';
 import {MatDialogRef} from '@angular/material/dialog';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
-import {DialogService} from '../confirm-dialog/dialog.service';
+
+import {DialogService} from '../services/dialog.service';
 import {DatePipe} from '@angular/common';
+import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,22 +18,23 @@ export class EditUserComponent implements OnInit {
               private notificationService: NotificationService,
               private dialog: MatDialogRef<EditUserComponent>,
               private dialogService: DialogService,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe,
+              public icons: FortAwesomeService) {
   }
 
   hide = true;
   msg = '';
   id = null;
-  exit = faTimes;
+  exitIcon = this.icons.exit;
 
   ngOnInit(): void {
     this.id = this.dialog._containerInstance._config.data.response;
   }
 
   updateUserDetails() {
-    if (this.service.form.valid) {
+    if (this.service.userForm.valid) {
       console.log(this.id);
-      const updateFormValue = this.service.form.value;
+      const updateFormValue = this.service.userForm.value;
       updateFormValue.birthDate = this.datePipe.transform(updateFormValue.birthDate, 'yyyy-MM-dd');
       this.service.updateUser(this.id, updateFormValue).subscribe(
         data => {
@@ -40,7 +42,7 @@ export class EditUserComponent implements OnInit {
           this.msg = 'Registration successful';
           this.dialog.close();
           this.notificationService.success('Zaktualizowano dane użytkownika.');
-          this.service.form.reset();
+          this.service.userForm.reset();
           this.service.initializeFormGroup();
         },
         error => {

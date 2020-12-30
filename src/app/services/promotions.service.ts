@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {Observable} from 'rxjs';
-import {PromotionsResponseInterface} from './promotionsResponseInterface';
+import {PromotionInterface} from '../model/promotionInterface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {PromotionsResponseInterface} from './promotionsResponseInterface';
 export class PromotionsService {
   mainUrl = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
-  getPromotions(): Observable<PromotionsResponseInterface[]> {
-    return this.http.get<PromotionsResponseInterface[]>(this.mainUrl + 'promotions');
+  getPromotions(): Observable<PromotionInterface[]> {
+    return this.http.get<PromotionInterface[]>(this.mainUrl + 'promotions');
   }
 }

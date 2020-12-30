@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../users/user.service';
-import {User} from '../users/user';
-import {UserResponseInterface} from '../users/userResponseInterface';
+import {UserService} from '../services/user.service';
+import {User} from '../model/user';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
@@ -15,10 +14,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  user = new User();
   msg = '';
   userCookie = null;
-  public userResponse: UserResponseInterface;
+  public user = new User();
 
   constructor(private service: UserService,
               private router: Router,
@@ -34,11 +32,12 @@ export class LoginComponent implements OnInit {
   // });
 
   loginUser() {
-    this.service.loginUserFromRemote(this.user).subscribe(
+    this.service.loginUser(this.user).subscribe(
       data => {
         console.log('response recieved');
-        this.userResponse = data;
-        this.cookie.set('email', this.userResponse.email);
+        this.user = data;
+        this.cookie.set('email', this.user.email);
+        this.cookie.set('id', this.user.id + '');
         // console.log(this.userResponse);
         this.router.navigate(['/mainpage']);
       },

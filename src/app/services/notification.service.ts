@@ -12,6 +12,11 @@ config: MatSnackBarConfig = {
   horizontalPosition: 'center',
   verticalPosition: 'bottom'
 };
+
+  infoConfig: MatSnackBarConfig = {
+   verticalPosition: 'top',
+   horizontalPosition: 'center'
+  };
   success(msg) {
     this.config.panelClass = ['success'];
     this.snackBar.open(msg, '', this.config);
@@ -19,5 +24,9 @@ config: MatSnackBarConfig = {
   error(msg) {
     this.config.panelClass = ['error'];
     this.snackBar.open(msg, '', this.config);
+  }
+  info(msg) {
+    this.config.panelClass = ['info'];
+    this.snackBar.open(msg, '', this.infoConfig);
   }
 }

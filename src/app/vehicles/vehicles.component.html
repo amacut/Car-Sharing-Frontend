@@ -2,13 +2,13 @@
   <p class="location">Polska, Warszawa, Górce</p>
   <p class="car">({{vehicle.vehicleType}}) {{vehicle.vehicleBrand}} {{vehicle.vehicleModel}} {{vehicle.registration}}</p>
   <div class="params">
-    <p><fa-icon [icon]="faDistance"></fa-icon>Odległość:</p>
+    <p><fa-icon [icon]="distanceIcon"></fa-icon>Odległość:</p>
     <p>0,4</p>
     <p class="unit">km</p>
-    <p><fa-icon [icon]="faRange"></fa-icon>Zasięg:</p>
+    <p><fa-icon [icon]="rangeIcon"></fa-icon>Zasięg:</p>
     <p>{{vehicle.currentRange}}</p>
     <p class="unit">km</p>
-    <p><fa-icon [icon]="faFuel"></fa-icon>Paliwo:</p>
+    <p><fa-icon [icon]="fuelIcon"></fa-icon>Paliwo:</p>
     <p>{{vehicle.currentFuel}}</p>
     <p class="unit">%</p>
   </div>
@@ -32,13 +32,13 @@
   </div>
 
     <div class="rent">
-      <a href="#">Zarezerwuj ten samochód</a>
-      <a href="#">Rozpocznij wynajem</a>
+      <a (click)="bookVehicle()">Zarezerwuj ten samochód</a>
+      <a (click)="beginRent()">Rozpocznij wynajem</a>
     </div>
 
     <div class="other">
-      <a href="#">Prowadź do auta</a>
-      <a href="#">Wyceń przejazd</a>
+      <a (click)="showDirections()">Prowadź do auta</a>
+      <a (click)="calculatePrice()">Wyceń przejazd</a>
     </div>
   </div>
 

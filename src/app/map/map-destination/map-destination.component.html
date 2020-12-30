@@ -1,0 +1,43 @@
+<section class="app-content">
+  <div class="example" (click)="showRouteDetails()" [ngStyle]="{flexBasis: changeView()}"></div>
+ <!-- <agm-map
+    [latitude]="origin.latitude"
+    [longitude]="origin.longitude"
+    [zoom]="zoom"
+    [zoomControl]="true"
+    [clickableIcons]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-marker [latitude]="origin.latitude" [longitude]="origin.longitude"></agm-marker>
+
+    <agm-marker *ngFor="let marker of destinationMarkers"
+                [latitude]="marker.latitude"
+                [longitude]="marker.longitude"></agm-marker>
+    <agm-direction *ngIf="showDirection" [origin]="" [destination]="destination"></agm-direction>
+  </agm-map>-->
+  <div class="rent-details" *ngIf="selectedRoute">
+    <fa-icon [icon]="back" (click)="selectedRoute = false"></fa-icon>
+    <p>Adres początkowy</p>
+    <p>Budy 166, 00-001 Warszawa, Polska</p>
+    <p>Adres docelowy</p>
+    <p>Dywizjonu 303 05, 01-355 Warszawa, Polska</p>
+    <p>Szacunkowy dystans:</p>
+    <p>1,6 km</p>
+    <p>Szacunkowy czas przejazdu:</p>
+    <p>5 min</p>
+    <p>Szacunkowy koszt</p>
+    <p>7,20 PLN</p>
+    <div class="buttons">
+    <div class="rent">
+      <a>Zarezerwuj ten samochód</a>
+      <a>Rozpocznij wynajem</a>
+    </div>
+
+    <div class="other">
+      <a >Prowadź do auta</a>
+      <a >Wyceń przejazd</a>
+    </div>
+    </div>
+  </div>
+</section>
+<app-menu></app-menu>

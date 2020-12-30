@@ -1,24 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 
-import {UserService} from './user.service';
-
-import {UserResponseInterface} from './userResponseInterface';
+import {UserService} from '../services/user.service';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {LoginComponent} from '../login/login.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditUserComponent} from '../edit-user/edit-user.component';
-import {NotificationService} from '../notification.service';
-import {DialogService} from '../confirm-dialog/dialog.service';
+import {NotificationService} from '../services/notification.service';
+import {DialogService} from '../services/dialog.service';
+import {User} from '../model/user';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  templateUrl: './user-account-details.component.html',
+  styleUrls: ['./user-account-details.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserAccountDetailsComponent implements OnInit {
   hide = true;
-  public user: UserResponseInterface;
+  public user: User;
 
 
   constructor(public service: UserService,
@@ -35,7 +34,8 @@ export class UserComponent implements OnInit {
   }
 
   getUserDetails() {
-    this.service.getUserByEmail(this.cookies.get('email')).subscribe(
+    const email = this.cookies.get('email');
+    this.service.getUserByEmail(email).subscribe(
       data => {
         this.user = data;
       },
@@ -54,14 +54,15 @@ export class UserComponent implements OnInit {
     dialogConfig.width = '60%';
     dialogConfig.height = '81vh';
     dialogConfig.data = {
-      response : this.user.id
+      response: this.user.id
     };
     this.dialog.open(EditUserComponent, dialogConfig);
   }
 
   deleteUser() {
-    this.dialogService.openConfirmDialog('Czy jesteś pewny, że chcesz usunąć konto?').afterClosed().subscribe( res => {
-      if(res) {
+    this.dialogService.openConfirmDialog('Czy jesteś pewny, że chcesz usunąć konto?')
+      .afterClosed().subscribe(res => {
+      if (res) {
         this.service.deleteUser(this.user.email).subscribe(
           data => {
             console.log('ok');

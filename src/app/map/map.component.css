@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-div.map {
-  position: relative;
-}
-
 agm-map {
   position: absolute;
   top: 0;
@@ -16,7 +12,7 @@ agm-map {
   height: 94vh;
 }
 
-div.user-location {
+/*div.user-location {
   position: absolute;
   top: 38vw;
   right: 1.75vw;
@@ -38,6 +34,6 @@ div.user-location img {
 }
 div.user-location img:hover {
   opacity: 1;
-}
+}*/
 
 

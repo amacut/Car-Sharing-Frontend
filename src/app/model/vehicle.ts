@@ -1,4 +1,4 @@
-export interface VehicleResponseInterface {
+export interface Vehicle {
   id: number;
   vehicleType: string;
   vehicleBrand: string;

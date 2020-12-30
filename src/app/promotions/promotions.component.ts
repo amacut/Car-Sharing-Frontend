@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PromotionsResponseInterface} from './promotionsResponseInterface';
-import {PromotionsService} from './promotions.service';
+import {PromotionsService} from '../services/promotions.service';
+import {PromotionInterface} from '../model/promotionInterface';
 
 @Component({
   selector: 'app-promotions',
@@ -8,7 +8,7 @@ import {PromotionsService} from './promotions.service';
   styleUrls: ['./promotions.component.css']
 })
 export class PromotionsComponent implements OnInit {
-  promotion: PromotionsResponseInterface[];
+  promotion: PromotionInterface[];
 
   constructor(private promotionService: PromotionsService) { }
 

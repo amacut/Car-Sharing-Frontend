@@ -1,16 +1,16 @@
 <nav class="desktop">
   <img src="../../assets/images/CarSharing.png" alt="Logo">
   <ul>
-    <li><a [routerLink]="'/mainpage'"><fa-icon [icon]="faMap"></fa-icon> Mapa</a></li>
-    <li><a [routerLink]="'/rentals-history'"><fa-icon [icon]="faHistory"></fa-icon>Historia wypożyczeń</a></li>
-    <li><a [routerLink]="'/active-booking'"><fa-icon [icon]="faCar"></fa-icon>Aktywne wypożyczenia</a></li>
-    <li><a [routerLink]="'/account'"><fa-icon [icon]="faUser"></fa-icon>Moje konto</a></li>
-    <li><a [routerLink]="'/price-list'"><fa-icon [icon]="faPriceList"></fa-icon>Cennik</a></li>
-    <li><a [routerLink]="'/FAQ&Guides'"><fa-icon [icon]="faInfo"></fa-icon>FAQ | Przewodnik</a></li>
+    <li><a [routerLink]="'/mainpage'"><fa-icon [icon]="mapIcon"></fa-icon> Mapa</a></li>
+    <li><a [routerLink]="'/rentals-history'"><fa-icon [icon]="historyIcon"></fa-icon>Historia wypożyczeń</a></li>
+    <li><a [routerLink]="'/active-booking'"><fa-icon [icon]="carIcon"></fa-icon>Aktywne wypożyczenia</a></li>
+    <li><a [routerLink]="'/account'"><fa-icon [icon]="userIcon"></fa-icon>Moje konto</a></li>
+    <li><a [routerLink]="'/price-list'"><fa-icon [icon]="priceListIcon"></fa-icon>Cennik</a></li>
+    <li><a [routerLink]="'/FAQ&Guides'"><fa-icon [icon]="infoIcon"></fa-icon>FAQ | Przewodnik</a></li>
 <!--    <li><a [routerLink]="'/account'"><fa-icon [icon]="faShare"></fa-icon>Poleć aplikację</a></li>-->
-    <li><a [routerLink]="'/promotions'"><fa-icon [icon]="faPromo"></fa-icon>Promocje</a></li>
-    <li><a [routerLink]="'/settings'"><fa-icon [icon]="faConfig"></fa-icon>Ustawienia</a></li>
-    <li><a  (click)="loginComp.logoutUser()"><fa-icon [icon]="faLogOut"></fa-icon>Wyloguj</a></li>
+    <li><a [routerLink]="'/promotions'"><fa-icon [icon]="promoIcon"></fa-icon>Promocje</a></li>
+    <li><a [routerLink]="'/settings'"><fa-icon [icon]="configIcon"></fa-icon>Ustawienia</a></li>
+    <li><a  (click)="loginComp.logoutUser()"><fa-icon [icon]="logOutIcon"></fa-icon>Wyloguj</a></li>
   </ul>
   <div>
     <a href="#"><img src="../../assets/images/info.jpg" alt=""></a>

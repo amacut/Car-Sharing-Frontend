@@ -1,18 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent} from '../login/login.component';
 
-import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
-import {faHistory} from '@fortawesome/free-solid-svg-icons';
-import { faCar } from '@fortawesome/free-solid-svg-icons';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
-
-
-import {faPercent} from '@fortawesome/free-solid-svg-icons';
+import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
 
 
 @Component({
@@ -21,18 +10,19 @@ import {faPercent} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  faMap = faMapMarkedAlt;
-  faHistory = faHistory;
-  faCar = faCar;
-  faUser = faUserCircle;
-  faPriceList = faDollarSign;
-  faInfo = faInfoCircle;
-  faShare = faShareAlt;
-  faConfig = faCog;
-  faLogOut = faPowerOff;
-  faPromo = faPercent;
+  mapIcon = this.icons.faMap;
+  historyIcon = this.icons.faHistory;
+  carIcon = this.icons.faCar;
+  userIcon = this.icons.faUser;
+  priceListIcon = this.icons.faPriceList;
+  infoIcon = this.icons.faInfo;
+  shareIcon = this.icons.faShare;
+  configIcon = this.icons.faConfig;
+  logOutIcon = this.icons.faLogOut;
+  promoIcon = this.icons.faPromo;
 
-  constructor(public loginComp: LoginComponent) { }
+  constructor(public loginComp: LoginComponent,
+              public icons: FortAwesomeService) { }
 
   ngOnInit(): void {
   }

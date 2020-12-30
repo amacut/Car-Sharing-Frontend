@@ -1,20 +1,14 @@
 <section class="app-content">
-  <div class="map">
-    <agm-map [latitude]="userLatitude"
+
+    <agm-map
+      [latitude]="userLatitude"
              [longitude]="userLongitude"
              [zoom]="zoom"
              [zoomControl]="true"
              [fullscreenControl]="true"
-             [clickableIcons]="false"
-    (centerChange)="userLocation()">
+             [clickableIcons]="false">
       <agm-marker [latitude]="userLatitude" [longitude]="userLongitude"
                   [iconUrl]="userIcon" [markerClickable]="false" >
-        <agm-circle [latitude]="userLatitude" [longitude]="userLongitude"
-                    [radius]="25"
-                    [fillColor]="'lightblue'"
-                    [circleDraggable]="false"
-                    [editable]="false">
-        </agm-circle>
       </agm-marker>
 
       <agm-marker
@@ -28,12 +22,12 @@
 
         <!--    //(dragEnd)="markerDragEnd(m, $event)">-->
       </agm-marker>
-      <agm-direction [origin]="origin" [destination]="destination"></agm-direction>
+
 
     </agm-map>
     <!--<div class="user-location" (click)="userLocation()">-->
     <!--  <img src="../../assets/images/userlocation.png" alt="">-->
     <!--</div>-->
-  </div>
+
 </section>
 

@@ -1,27 +1,42 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable, Input} from '@angular/core';
+import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DirectionsService {
- /* 'https://maps.googleapis.com/maps/api/directions/json?origin=Chicago,' +
-  'IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&key='*/
-  // https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=
-  directionsApi = 'https://maps.googleapis.com/maps/api/directions/json?';
-key = 'https://maps.googleapis.com/maps/api/directions/jsonorigin=52.241846,20.920517&destination=52.236675,20.912138&key=';
-  constructor(private http: HttpClient) {
+  @Input() origin: ILatLng;
+  @Input() destination: ILatLng;
+
+  constructor(
+              ) {
+
   }
-  getRoute(): void {
-    console.log('działa');
-    this.http.get(this.directionsApi + 'origin=52.241846,20.920517&destination=52.236675,20.912138&key=', {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*'
-      })
-    })
-      .subscribe(data => {
-        console.log(data);
-      });
-  }
+
+// calculateDistance(point1, point2) {
+//   const p1 = new google.maps.LatLng(
+//     point1.lat,
+//     point1.lng
+//   );
+//   const p2 = new google.maps.LatLng(
+//     point2.lat,
+//     point2.lng
+//   );
+//   return (
+//     google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000
+//   ).toFixed(2);
+// }
+}
+export interface ILatLng {
+  latitude: number;
+  longitude: number;
+}
+
+
+
+interface RouteDetails {
+  distance: any;
+  duration: any;
 }

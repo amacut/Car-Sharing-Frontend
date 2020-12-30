@@ -1,43 +1,44 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApiUrlInterceptor} from './interceptors/api-url.interceptor';
-import {MaterialModule} from './material/material.module';
+import {MaterialModule} from './shared/material/material.module';
 import {DirectionsService} from './map/directions.service';
-import {UserService} from './users/user.service';
+import {UserService} from './services/user.service';
 
 
 import {AppRoutingModule} from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { MapComponent } from './map/map.component';
+import {AppComponent} from './app.component';
+import {MenuComponent} from './menu/menu.component';
+import {MapComponent} from './map/map.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import { VehiclesComponent } from './vehicles/vehicles.component';
-import { ConfigComponent } from './config/config.component';
-import { PromotionsComponent } from './promotions/promotions.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {VehiclesComponent} from './vehicles/vehicles.component';
+import {ConfigComponent} from './config/config.component';
+import {PromotionsComponent} from './promotions/promotions.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AgmDirectionModule} from 'agm-direction';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { UserComponent } from './users/user.component';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MainPageComponent } from './mainpage/main-page.component';
+import {LoginComponent} from './login/login.component';
+import {RegistrationComponent} from './registration/registration.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MainPageComponent} from './mainpage/main-page.component';
 import {CookieService} from 'ngx-cookie-service';
 import {EnvServiceFactory, EnvServiceProvider} from './env.service.provider';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { TrashComponent } from './trash/trash.component';
+import {EditUserComponent} from './edit-user/edit-user.component';
 import {DatePipe} from '@angular/common';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { RentalsHistoryComponent } from './rentals-history/rentals-history.component';
-import { ActiveBookingComponent } from './active-booking/active-booking.component';
-import { PriceListComponent } from './price-list/price-list.component';
-import { GuidesComponent } from './guides/guides.component';
-import { SettingsComponent } from './settings/settings.component';
-
-
+import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
+import {RentalsHistoryComponent} from './rentals-history/rentals-history.component';
+import {ActiveBookingComponent} from './active-booking/active-booking.component';
+import {PriceListComponent} from './price-list/price-list.component';
+import {GuidesComponent} from './guides/guides.component';
+import {SettingsComponent} from './settings/settings.component';
+import {GoogleMapsModule} from '@angular/google-maps';
+import {MapDestinationComponent} from './map/map-destination/map-destination.component';
+import {MatDialogRef} from '@angular/material/dialog';
+import {UserAccountDetailsComponent} from './user-account-details/user-account-details.component';
 
 
 @NgModule({
@@ -48,18 +49,18 @@ import { SettingsComponent } from './settings/settings.component';
     VehiclesComponent,
     ConfigComponent,
     PromotionsComponent,
-    UserComponent,
+    UserAccountDetailsComponent,
     LoginComponent,
     RegistrationComponent,
     MainPageComponent,
     EditUserComponent,
-    TrashComponent,
     ConfirmDialogComponent,
     RentalsHistoryComponent,
     ActiveBookingComponent,
     PriceListComponent,
     GuidesComponent,
-    SettingsComponent
+    SettingsComponent,
+    MapDestinationComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +78,7 @@ import { SettingsComponent } from './settings/settings.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    GoogleMapsModule,
   ],
   providers: [
     DirectionsService,
@@ -85,10 +87,15 @@ import { SettingsComponent } from './settings/settings.component';
     LoginComponent,
     UserService,
     DatePipe,
+    MapDestinationComponent,
+    VehiclesComponent,
+    MapComponent,
+    GoogleMapsAPIWrapper,
     EnvServiceProvider
     // {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents: [VehiclesComponent, EditUserComponent, ConfirmDialogComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
