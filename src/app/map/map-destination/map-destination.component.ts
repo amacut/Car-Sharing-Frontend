@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {VehiclesComponent} from '../../vehicles/vehicles.component';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatDialogRef} from '@angular/material/dialog';
+import {ActivatedRoute} from '@angular/router';
 import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
-import {map} from 'rxjs/operators';
-import DirectionsResult = google.maps.DirectionsResult;
 import {FortAwesomeService} from '../../shared/fort-awesome/fort-awesome.service';
+import {NotificationService} from '../../services/notification.service';
 
 declare var google: any;
 
@@ -16,88 +13,78 @@ declare var google: any;
 })
 export class MapDestinationComponent implements OnInit {
 
-  showDirection: boolean;
-  selectedRoute: boolean;
-  private directionsRenderer: any;
-  origin: any = {
-    latitude: 0,
-    longitude: 0
-  };
-  destination: any = {
+  startPosition: any = {
     latitude: 0,
     longitude: 0
   };
   zoom = 16;
+  origin: any;
+  destination: any;
+  private directionsRenderer: any;
   routeDetails: RouteDetails;
+  selectedRoute: boolean;
 
   constructor(private route: ActivatedRoute,
               private mapsAPILoader: MapsAPILoader,
               private gMapsApi: GoogleMapsAPIWrapper,
-              private icons: FortAwesomeService) {
+              private icons: FortAwesomeService,
+              private notification: NotificationService) {
   }
 
   back = this.icons.back;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.origin = {
+      this.startPosition = {
         latitude: parseFloat(params['vehicleLatitude']),
-        longitude: parseFloat(params ['vehicleLongitude'])
+        longitude: parseFloat(params['vehicleLongitude'])
       };
     });
-  }
-
-  showRouteDetails(): void {
-    this.selectedRoute = true;
   }
 
   changeView(): string {
     return this.selectedRoute === true ? '65.6%' : '100%';
   }
 
-  mapClicked(event) {
-    const lat = event.coords.lat;
-    const lng = event.coords.lng;
-    this.destination.latitude = parseFloat(lat);
-    this.destination.longitude = parseFloat(lng);
-    this.destinationMarkers.length = 0;
-    this.destinationMarkers.push({
-      latitude: lat,
-      longitude: lng
-    });
-    console.log(typeof (this.origin.latitude),
-      typeof (this.origin.longitude),
-      typeof (this.destination.latitude),
-      typeof (this.destination.longitude));
-    console.log(this.origin.latitude,
-      this.origin.longitude,
-      this.destination.latitude,
-      this.destination.longitude);
-    console.log('mapClicked ' + lat, lng);
-    console.log('dest ' + this.destination.latitude, this.destination.longitude);
-    this.showDirection = true;
-    this.mapsAPILoader.load().then(
-      () => {
-        this.getDirection();
-      }
-    );
+  mapClicked(event): void {
+    const latitude = event.coords.lat;
+    const longitude = event.coords.lng;
+    this.origin = {
+      lat: this.startPosition.latitude,
+      lng: this.startPosition.longitude
+    };
+    this.destination = {
+      lat: latitude,
+      lng: longitude
+    };
+    if (this.origin.lat && this.origin.lng && this.destination.lat && this.destination.lng) {
+      this.getDirection(this.origin.lat, this.origin.lng, this.destination.lat, this.destination.lng);
+      this.changeSelectedRoute();
+    }
   }
 
-  getDirection() {
+  changeSelectedRoute(): void {
+    this.notification.info('Ładowanie danych...');
+    setTimeout(() => {
+      this.selectedRoute = true;
+      this.notification.snackBar.dismiss();
+    }, 2000);
+  }
+
+  getDirection(originLat: number, originLng: number, destinationLat: number, destinationLng: number): void {
     if (!this.directionsRenderer) {
       this.directionsRenderer = new google.maps.DirectionsRenderer();
     }
     const directionsRenderer = this.directionsRenderer;
     const directionsService = new google.maps.DirectionsService();
-    // this.distance = this.calculateDistance(this.origin, this.destination);
     directionsService.route({
         origin: {
-          lat: this.origin.latitude,
-          lng: this.origin.longitude
+          lat: originLat,
+          lng: originLng
         },
         destination: {
-          lat: this.destination.latitude,
-          lng: this.destination.longitude
+          lat: destinationLat,
+          lng: destinationLng
         },
         travelMode: 'DRIVING'
       },
@@ -113,8 +100,8 @@ export class MapDestinationComponent implements OnInit {
             return;
           } else {
             this.routeDetails = {
-              distance: directionsData.distance,
-              duration: directionsData.duration,
+              distance: directionsData.distance.text,
+              duration: directionsData.duration.text,
               startAddress: directionsData.start_address,
               endAddress: directionsData.end_address
             };
@@ -122,24 +109,10 @@ export class MapDestinationComponent implements OnInit {
         }
       });
   }
-
-  destinationMarkers: Marker[] = [];
 }
-
-interface Marker {
-  latitude: number;
-  longitude: number;
-  draggable?: boolean;
-}
-
 interface RouteDetails {
-  distance: any;
-  duration: any;
+  distance: string;
+  duration: string;
   startAddress: string;
   endAddress: string;
-}
-
-interface ILatLng {
-  latitude: number;
-  longitude: number;
 }

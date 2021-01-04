@@ -15,7 +15,7 @@ config: MatSnackBarConfig = {
 
   infoConfig: MatSnackBarConfig = {
    verticalPosition: 'top',
-   horizontalPosition: 'center'
+   horizontalPosition: 'center',
   };
   success(msg) {
     this.config.panelClass = ['success'];

@@ -1,9 +1,7 @@
-import {Component, Directive, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VehiclesService} from '../services/vehicles.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {VehiclesComponent} from '../vehicles/vehicles.component';
-import {DirectionsService} from './directions.service';
-import {AgmCoreModule, MapsAPILoader} from '@agm/core';
 import {take} from 'rxjs/operators';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 

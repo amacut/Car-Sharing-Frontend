@@ -4,7 +4,6 @@ import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApiUrlInterceptor} from './interceptors/api-url.interceptor';
 import {MaterialModule} from './shared/material/material.module';
-import {DirectionsService} from './map/directions.service';
 import {UserService} from './services/user.service';
 
 
@@ -39,6 +38,7 @@ import {GoogleMapsModule} from '@angular/google-maps';
 import {MapDestinationComponent} from './map/map-destination/map-destination.component';
 import {MatDialogRef} from '@angular/material/dialog';
 import {UserAccountDetailsComponent} from './user-account-details/user-account-details.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 
 @NgModule({
@@ -61,6 +61,7 @@ import {UserAccountDetailsComponent} from './user-account-details/user-account-d
     GuidesComponent,
     SettingsComponent,
     MapDestinationComponent,
+    WalletComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +70,7 @@ import {UserAccountDetailsComponent} from './user-account-details/user-account-d
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      apiKey: EnvServiceFactory().apiUrl,
+      // apiKey: EnvServiceFactory().apiUrl,
       libraries: ['geometry', 'places']
     }),
     AgmDirectionModule,
@@ -81,7 +82,6 @@ import {UserAccountDetailsComponent} from './user-account-details/user-account-d
     GoogleMapsModule,
   ],
   providers: [
-    DirectionsService,
     UserService,
     CookieService,
     LoginComponent,
