@@ -1,0 +1,21 @@
+.wallet {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px auto;
+  flex-wrap: wrap;
+}
+.wallet fa-icon {
+  flex-basis: 20%;
+  color: royalblue;
+  transform: scale(1.5) translateY(4%);
+}
+
+.wallet a {
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.wallet a:hover {
+  color: darkred;
+}

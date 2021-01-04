@@ -12,6 +12,7 @@ export class User {
   houseNoFlatNo: string;
   postcode: string;
   city: string;
+  walletValue: number;
   constructor() {
   }
 }

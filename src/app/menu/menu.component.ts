@@ -10,6 +10,7 @@ import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+
   mapIcon = this.icons.faMap;
   historyIcon = this.icons.faHistory;
   carIcon = this.icons.faCar;
@@ -22,9 +23,10 @@ export class MenuComponent implements OnInit {
   promoIcon = this.icons.faPromo;
 
   constructor(public loginComp: LoginComponent,
-              public icons: FortAwesomeService) { }
-
-  ngOnInit(): void {
+              public icons: FortAwesomeService) {
   }
 
+  ngOnInit(): void {
+
+  }
 }

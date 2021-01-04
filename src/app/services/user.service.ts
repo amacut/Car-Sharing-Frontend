@@ -34,7 +34,7 @@ export class UserService {
   public registerUser(user: User): Observable<User> {
     return this.http.post<any>(this.mainUrl + 'registration', user);
   }
-// spróbować jako get?
+
   public loginUser(user: User): Observable<User> {
     return this.http.post<any>(this.mainUrl + 'login', user);
   }
@@ -50,6 +50,10 @@ export class UserService {
   public deleteUser(email: string): Observable<any> {
     console.log(email);
     return this.http.delete<User>(this.mainUrl + email);
+  }
+
+  public getUserWalletValue(id: string): Observable<any> {
+    return this.http.get(this.mainUrl + 'walletValue/' + id);
   }
   initializeFormGroup(): void {
     this.userForm.setValue({
