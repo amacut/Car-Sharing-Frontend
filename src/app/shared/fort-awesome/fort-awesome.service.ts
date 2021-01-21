@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {faWallet} from '@fortawesome/free-solid-svg-icons';
+import {faBars, faWallet} from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import {faHistory} from '@fortawesome/free-solid-svg-icons';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
@@ -25,6 +25,7 @@ import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 })
 export class FortAwesomeService {
   // Menu icons
+  faBars = faBars;
   faWallet = faWallet;
   faMap = faMapMarkedAlt;
   faHistory = faHistory;

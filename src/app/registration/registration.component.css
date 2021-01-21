@@ -1,95 +1,134 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-div.wrapper {
+.wrapper {
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100vh;
+  text-align: center;
   background-color: #D9D9D9;
 }
-h2 {
-  position: absolute;
-  top: 10%;
-  left: 40%;
-  transform: translateX(-50%);
-  font-size: 50px;
-  letter-spacing: 1px;
-}
-p {
-  font-size: 18px;
-  font-weight: bold;
-}
-.back-to-login {
-    position: absolute;
-    top:5%;
-    left: 3%;
+
+.wrapper .back-to-login img {
+  width: 60%;
+  max-width: 500px;
 }
 
-.back-to-login .back {
-  width: 50%;
-  margin: 50px auto;
-  text-align: center;
+.wrapper .back-to-login .login p {
+  margin: 15px 0;
 }
-.back-to-login a{
-  display: block;
-  width: 70%;
-  margin: 30px auto;
-  padding: 20px 30px;
+
+.wrapper .back-to-login .login a {
+  padding: 7px 14px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 16px;
+  text-decoration: none;
   color: white;
   border: 5px darkgreen;
   letter-spacing: 1px;
   background-color: green;
-  text-decoration: none;
-  transition: .1s;
 }
 
-.back-to-login a:hover{
-  box-shadow: 0 0 5px 0 black;
+.wrapper h2 {
+  text-transform: uppercase;
+  margin: 25px 0 0 0;
+  padding: 10px;
+  border-top: 2px solid black;
 }
 
-.normal-form {
-  position: absolute;
-  top: 13%;
-  left: 60%;
-  transform: translateX(-50%);
-  width: 60%;
-  /*background-color: gray;*/
+.wrapper .normal-form {
+  margin: 0 0 0 20px;
+  text-align: left;
 }
 
-.controls-container{
-  /*background-color: cadetblue;*/
-  width: 80%;
-  /*padding: 5%;*/
+.wrapper .normal-form .controls-container mat-form-field {
+ width: 90%;
 }
 
-mat-form-field {
-  width: 100%;
-  padding: 1% 0;
-}
-.add-bottom-padding {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-mat-radio-group mat-radio-button {
-  margin-left: 30px;
+.wrapper .normal-form .controls-container mat-radio-group mat-radio-button {
+  margin-left: 7px;
+  transform: translateY(3px);
 }
 
-.button-row {
-  width: 30%;
+.wrapper .normal-form .button-row button {
+  margin-left: 20px;
 }
 
-button {
-  font-size: 18px;
-  letter-spacing: 1px;
-  margin: 0 0 0 30px;
-  padding: 5px 20px;
+@media (min-width: 730px) {
+
+  .wrapper .normal-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .wrapper h2 {
+    font-size: 26px;
+  }
+  .wrapper .normal-form .controls-container{
+    flex-basis: 50%;
+  }
+  .wrapper .normal-form .button-row {
+    margin: 8% 0 5% -7%;
+  }
+}
+@media (min-width: 730px) and (orientation: portrait) {
+  .wrapper {
+    height: 100vh;
+  }
+
 }
 
-/*.company-checkbox {*/
-/*  position: absolute;*/
-/*  top: 10%;*/
-/*}*/
+  @media (min-width: 1280px) {
+  .wrapper {
+    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+    .wrapper .back-to-login {
+      margin-top: 40px;
+      width: 60%;
+      max-width: 500px;
+    }
+
+  .wrapper .back-to-login img {
+    width: 100%;
+  }
+
+  .wrapper .back-to-login .login p {
+    margin: 30px 0;
+    font-size: 20px;
+  }
+
+  .wrapper .back-to-login .login a {
+    padding: 15px 30px;
+    font-size: 24px;
+  }
+  .back-to-login a:hover{
+    box-shadow: 0 0 5px 0 black;
+  }
+  .wrapper h2 {
+    position: absolute;
+    top: 8%;
+    left: 45%;
+    border-top: none;
+    font-size: 30px;
+  }
+  .wrapper .normal-form {
+    position: absolute;
+    width: 50%;
+    top: 20%;
+    left: 44%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .wrapper h2 {
+    left: 41%;
+  }
+  .wrapper .normal-form {
+    left: 40%;
+  }
+}
+
+
+
+
