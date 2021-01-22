@@ -1,6 +1,15 @@
-<nav class="desktop">
+<div class="wrapper">
+  <nav class="mobile">
+  <fa-icon [icon]="menuIcon" (click)="toggleMenu()"></fa-icon>
+</nav>
+<nav class="menu">
   <img src="../../assets/images/CarSharing.png" alt="Logo">
-  <app-wallet></app-wallet>
+  <div class="wallet">
+    <fa-icon [icon]="walletIcon"></fa-icon>
+    <app-wallet-value></app-wallet-value>
+    <a [routerLink]="'/wallet'">Doładuj portfel</a>
+  </div>
+
   <ul>
     <li><a [routerLink]="'/mainpage'">
       <fa-icon [icon]="mapIcon"></fa-icon>
@@ -31,7 +40,7 @@
       <fa-icon [icon]="logOutIcon"></fa-icon>
       Wyloguj</a></li>
   </ul>
-  <div>
+  <div class="socials">
     <a href="#"><img src="../../assets/images/info.jpg" alt=""></a>
     <a href="#"><img src="../../assets/images/facebook.jpg" alt=""></a>
     <a href="#"><img src="../../assets/images/instagram.png" alt=""></a>
@@ -41,3 +50,4 @@
     <p>&copy; AM</p>
   </footer>
 </nav>
+</div>

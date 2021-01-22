@@ -4,68 +4,419 @@
   box-sizing: border-box;
 }
 
-nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 15%;
-  height: 100%;
+.wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.mobile {
   display: flex;
-  flex-direction: column;
-  background-color: #D9D9D9;
-  /*font-family: Arial, serif;*/
+  align-items: center;
+  height: 30px;
+  padding: 1% 5%;
+  color: white;
+  background-color: royalblue;
   font-size: 20px;
 }
 
+.mobile fa-icon {
+  cursor: pointer;
+}
 
-nav ul {
+.menu {
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 340px;
+  height: calc(100vh - 30px);
+  background-color: #D9D9D9;
+  transition: .1s;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.menu img {
+  width: 60%;
+  max-width: 283px;
+}
+
+.menu .wallet {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  flex-wrap: wrap;
+}
+
+.menu .wallet fa-icon {
+  color: royalblue;
+  flex-basis: 20%;
+  transform: scale(1.5) translateY(4%);
+}
+
+.menu .wallet a {
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+.menu ul {
+  width: 100%;
   list-style: none;
 }
 
-
-nav ul li a {
+.menu ul li a {
   position: relative;
-  display: block;
-  line-height: 55px;
-  margin: 2px;
-  padding: 0 0 0 50px;
-  letter-spacing: 1px;
-  background-color: white;
+  display: inline-block;
+  width: 100%;
+  margin: 1px 0;
+  padding: 5px 0 5px 50px;
+  background-color: whitesmoke;
   color: black;
   cursor: pointer;
   text-decoration: none;
-
 }
 
-nav ul li a:hover {
-  background-color: darkgrey;
-}
-
-nav ul li a fa-icon {
+.menu ul li a fa-icon {
   position: absolute;
-  text-align: center;
+  top: 6px;
   left: 0;
-  width: 50px;
-  font-size: 23px;
-
-}
-
-nav div {
-  margin: 10% 5%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-nav div a img {
-  width: 3vw;
-  height: 3vw;
-}
-
-nav footer p {
-  font-size: 12px;
-  position: absolute;
-  bottom: 1%;
-  width: 100%;
+  color: royalblue;
   text-align: center;
+  width: 50px;
+  font-size: 16px;
+
+}
+
+.menu .socials {
+  margin-top: 10px;
+}
+
+.menu div a img {
+  width: 7vw;
+  height: 7vw;
+  margin: 0 10px;
+}
+
+.menu footer p {
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+@media (min-width: 360px) {
+  .menu img {
+    width: 70%;
+  }
+
+  .menu ul li a {
+    padding: 8px 0 8px 70px;
+    font-size: 16px;
+  }
+
+  .menu ul li a fa-icon {
+    top: 7px;
+    left: 20px;
+    font-size: 18px;
+  }
+
+  .menu .socials {
+    margin-top: 20px;
+  }
+
+  .menu footer p {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 411px) {
+  .menu img {
+    width: 70%;
+  }
+
+  .menu .wallet {
+    width: 40%;
+  }
+
+  app-wallet-value {
+    transform: scale(1.2);
+  }
+
+  .menu .wallet a {
+    font-size: 14px;
+    margin-top: -8px;
+  }
+
+  .menu ul li a {
+    padding: 11px 0 11px 100px;
+    font-size: 18px;
+  }
+
+  .menu div a img {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .menu footer p {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+
+}
+
+@media (min-height: 812px) and (orientation: portrait) {
+  .menu img {
+    width: 80%;
+  }
+
+  .menu ul li a {
+    padding: 13px 0 13px 90px;
+    font-size: 20px;
+  }
+
+  .menu ul li a fa-icon {
+    top: 12px;
+    left: 30px;
+    font-size: 23px;
+  }
+
+  .menu .socials {
+    margin-top: 30px;
+  }
+
+  .menu div a img {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .menu footer p {
+    margin-top: 30px;
+    font-size: 13px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .mobile {
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .menu {
+    width: 50%;
+    height: calc(100vh - 50px);
+  }
+
+  .menu img {
+    width: 90%;
+  }
+
+  .menu .wallet fa-icon {
+    transform: scale(2) translateY(4%);
+  }
+
+  app-wallet-value {
+    transform: scale(1.4);
+  }
+
+  .menu .wallet a {
+    font-size: 16px;
+  }
+
+  .menu .wallet {
+    margin: 15px auto;
+  }
+
+  .menu ul li a {
+    padding: 16px 0 16px 100px;
+    font-size: 22px;
+  }
+
+  .menu ul li a fa-icon {
+    top: 13px;
+    font-size: 25px;
+  }
+
+  .menu div a img {
+    width: 4vw;
+    height: 4vw;
+    margin: 0 8px;
+  }
+
+  .menu footer p {
+    margin-top: 30px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1024px) and (orientation: landscape) {
+  .wrapper {
+    overflow: auto;
+  }
+
+  .menu {
+    height: 100%;
+    width: 40%;
+  }
+
+  .menu img {
+    width: 100%;
+  }
+
+  .menu .wallet {
+    margin: 20px auto;
+  }
+
+  .menu ul li a fa-icon {
+    top: 14px;
+    font-size: 26px;
+  }
+
+  .menu div a img {
+    width: 4vw;
+    height: 4vw;
+    margin: 0 8px;
+  }
+
+  .menu footer p {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+
+@media (min-height: 1366px) and (orientation: portrait) {
+  .mobile {
+    height: 70px;
+    font-size: 40px;
+  }
+
+  .menu {
+    padding-top: 30px;
+    width: 35%;
+    height: calc(100vh - 70px);
+  }
+
+  .menu img {
+    width: 100%;
+  }
+
+  .menu .wallet {
+    margin: 30px auto;
+  }
+
+  .menu .wallet fa-icon {
+    transform: scale(2.4) translateY(4%);
+  }
+
+  app-wallet-value {
+    transform: scale(1.8);
+  }
+
+  .menu .wallet a {
+    font-size: 20px;
+    margin-top: 5px;
+  }
+
+  .menu ul li a {
+    padding: 20px 0 20px 100px;
+    margin: 2px 0;
+    font-size: 24px;
+  }
+
+  .menu ul li a fa-icon {
+    top: 15px;
+    left: 30px;
+    font-size: 26px;
+  }
+
+  .menu .socials {
+    margin-top: 50px;
+  }
+
+  .menu div a img {
+    width: 5vw;
+    height: 5vw;
+    margin: 0 10px;
+  }
+
+  .menu footer p {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .wrapper {
+    height: 100vh;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .menu {
+    transform: translateX(0);
+    width: 25%;
+    height: 100vh;
+  }
+
+  .menu .wallet a:hover {
+    color: darkred;
+  }
+
+  .menu ul li a {
+    padding: 18px 0 18px 70px;
+    font-size: 24px;
+    margin: 2px 0;
+    cursor: pointer;
+  }
+
+  .menu ul li a:hover {
+    background-color: darkgrey;
+    transform: scale(1.1);
+  }
+
+  .menu ul li a fa-icon {
+    top: 15px;
+    left: 10px;
+    font-size: 26px;
+  }
+
+  .menu .socials {
+    margin-top: 10px;
+  }
+
+  .menu div a img {
+    width: 3vw;
+    height: 3vw;
+    margin: 0 8px;
+  }
+
+  .menu footer p {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .menu {
+    width: 20%;
+  }
+
+  .menu footer p {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 921px) {
+  .wrapper {
+    overflow: auto;
+  }
+
+  .menu {
+    height: 100%;
+  }
 }
