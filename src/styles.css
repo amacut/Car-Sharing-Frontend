@@ -15,12 +15,58 @@ p {
 
 section.app-content {
   position: absolute;
-  top: 1vw;
-  left: 16vw;
-  right: 1vw;
+  top: 30px;
+  left: 0;
+  width: 100%;
   border: 5px solid black;
-  height: 95vh;
+  height: calc(100vh - 30px);
   background-color: #D9D9D9;
+}
+
+@media (min-width: 768px){
+  section.app-content {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+}
+@media (min-width: 1024px){
+  section.app-content {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+}
+@media (min-width: 1280px){
+  section.app-content {
+    position: absolute;
+    top: 10px;
+    left: 26vw;
+    width: 73%;
+    height: 98vh;
+  }
+}
+@media (min-height: 1366px) and (orientation: portrait) {
+  section.app-content {
+    top: 70px;
+    height: calc(100vh - 70px);
+  }
+}
+@media (min-width: 1400px){
+  section.app-content {
+    left: 25vw;
+    width: 74%;
+  }
+}
+@media (min-width: 1600px){
+  section.app-content {
+    left: 22vw;
+    width: 77%;
+  }
+}
+@media (min-width: 1800px){
+  section.app-content {
+    left: 19vw;
+    width: 80%;
+  }
 }
 
 
