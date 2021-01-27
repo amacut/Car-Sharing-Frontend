@@ -1,0 +1,30 @@
+<section class="app-content">
+  <div class="wrapper">
+    <div class="credits">
+      <p>Aktualny stan portfela: </p>
+      <app-wallet-value></app-wallet-value>
+      <form #creditForm="ngForm" (ngSubmit)="creditWallet()">
+        <mat-error *ngIf="creditValue.touched && !creditValue.valid">Wprowadź wartość</mat-error>
+        <input id="creditValue" name="creditValue" type="number" placeholder="Podaj kwotę" class="form-control"  #creditValue="ngModel" [(ngModel)]="value" required min="0">
+        <mat-error *ngIf="pass.touched && !pass.valid">Wprowadź wartość</mat-error>
+        <input type="password" id="password" name="password" placeholder="Podaj hasło" class="form-control" required [(ngModel)]="password" #pass="ngModel" >
+        <button type="submit" [disabled]="creditForm.invalid">Dodaj środki </button>
+      </form>
+    </div>
+    <div class="history">
+      <table>
+        <tr>
+          <th>Data</th>
+          <th>Typ transakcji</th>
+          <th>Kwota</th>
+        </tr>
+        <tr *ngFor="let transaction of walletHistory">
+          <td>{{transaction.transaction_date}}</td>
+          <td>{{transaction.type}}</td>
+          <td>{{transaction.value.toFixed(2)}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+<app-menu></app-menu>
