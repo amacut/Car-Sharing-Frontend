@@ -1,0 +1,72 @@
+<section class="app-content">
+<h2>Twoje wypożyczenia</h2>
+  <table *ngIf="rentalsList" class="table table-dark table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Rozpoczęcie wynajmu</th>
+      <th scope="col">Zakończenie wynajmu</th>
+      <th scope="col">Cena wynajmu</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let rental of rentalsList; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{rental.rentDate}}</td>
+      <td>{{rental.returnDate}}</td>
+      <td>{{rental.totalPrice.toFixed(2)}}</td>
+      <td><a (click)="showDetails(rental.id)">Szczegóły</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</section>
+<section class="modal-wrap">
+  <div *ngIf="chosenRent" class="modal-details">
+    <span class="hide" (click)="hideDetails()">x</span>
+    <div class="info">
+      <h3>Szczegóły wynajmu</h3>
+      <p>Koszt całkowity: {{chosenRent.totalPrice.toFixed(2)}} zł</p>
+      <p><fa-icon [icon]="carIcon"></fa-icon>({{chosenRent.vehicleType}}) {{chosenRent.brand}} {{chosenRent.model}} {{chosenRent.registration}}</p>
+      <div class="first-column">
+        <p>Rozpoczęcie wynajmu</p>
+        <p>{{chosenRent.rentDate}}</p>
+        <p>Miejsce startowe</p>
+        <p>{{chosenRent.rentDate}}</p>
+        <p>Czas jazdy</p>
+        <p>{{chosenRent.drivingTime}}</p>
+        <p>Dystans [km]</p>
+        <p>{{chosenRent.distance.toFixed(2)}} </p>
+        <p>Czas postoju</p>
+        <p>{{chosenRent.stopOverTime}}</p>
+      </div>
+      <div class="second-column">
+        <p>Zakończenie wynajmu</p>
+        <p>{{chosenRent.returnDate}}</p>
+        <p>Miejsce docelowe</p>
+        <p>{{chosenRent.returnDate}}</p>
+        <p>Cena za czas jazdy [zł]</p>
+        <p>{{chosenRent.drivingPrice.toFixed(2)}} [{{chosenRent.vehicleTypeDrivingPrice.toFixed(2)}} PLN/min]</p>
+        <p>Cena za przejechany dystans [zł]</p>
+        <p>{{chosenRent.distancePrice.toFixed(2)}} [{{chosenRent.vehicleTypeDistancePrice.toFixed(2)}} PLN/km]</p>
+        <p>Cena za czas postoju [zł]</p>
+        <p>{{chosenRent.stopOverPrice.toFixed(2)}} [{{chosenRent.vehicleTypeStopOverPrice.toFixed(2)}} PLN/min]</p>
+      </div>
+    </div>
+  </div>
+</section>
+<app-menu></app-menu>
