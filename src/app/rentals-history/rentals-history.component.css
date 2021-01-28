@@ -111,10 +111,12 @@ table td {
   flex-basis: 45%;
   font-size: 16px;
 }
+
 .modal-wrap.active .modal-details .info div p:nth-of-type(odd) {
   font-style: italic;
   margin-right: 30px;
 }
+
 .modal-wrap.active .modal-details .info div p:nth-of-type(even) {
   word-spacing: 5px;
 }

@@ -12,47 +12,47 @@ export class RentalsHistoryComponent implements OnInit {
 
   rentDetailsIsShow = false;
   rentalsList: Rental[] = [];
-/*  rentalsList: Rental[] = [
-    {
-      id: 1,
-      rentDate: '2020-11-15 16:00:00',
-      returnDate: '2020-11-15 18:00:00',
-      drivingTime: '01:50:00',
-      drivingPrice: 55.0,
-      distance: 10.0,
-      distancePrice: 8.0,
-      stopOverTime: '00:10:00',
-      stopOverPrice: 2.0,
-      totalPrice: 65.0,
-      isActive: false,
-    },
-    {
-      id: 2,
-      rentDate: '2020-11-16 16:00:00',
-      returnDate: '2020-11-16 19:00:00',
-      drivingTime: '02:50:00',
-      drivingPrice: 55.0,
-      distance: 10.0,
-      distancePrice: 8.0,
-      stopOverTime: '00:10:00',
-      stopOverPrice: 2.0,
-      totalPrice: 75.0,
-      isActive: false,
-    },
-    {
-      id: 3,
-      rentDate: '2020-11-17 10:00:00',
-      returnDate: '2020-11-17 14:00:00',
-      drivingTime: '03:50:00',
-      drivingPrice: 55.0,
-      distance: 10.0,
-      distancePrice: 8.0,
-      stopOverTime: '00:10:00',
-      stopOverPrice: 2.0,
-      totalPrice: 85.0,
-      isActive: false,
-    }
-  ];*/
+  /*  rentalsList: Rental[] = [
+      {
+        id: 1,
+        rentDate: '2020-11-15 16:00:00',
+        returnDate: '2020-11-15 18:00:00',
+        drivingTime: '01:50:00',
+        drivingPrice: 55.0,
+        distance: 10.0,
+        distancePrice: 8.0,
+        stopOverTime: '00:10:00',
+        stopOverPrice: 2.0,
+        totalPrice: 65.0,
+        isActive: false,
+      },
+      {
+        id: 2,
+        rentDate: '2020-11-16 16:00:00',
+        returnDate: '2020-11-16 19:00:00',
+        drivingTime: '02:50:00',
+        drivingPrice: 55.0,
+        distance: 10.0,
+        distancePrice: 8.0,
+        stopOverTime: '00:10:00',
+        stopOverPrice: 2.0,
+        totalPrice: 75.0,
+        isActive: false,
+      },
+      {
+        id: 3,
+        rentDate: '2020-11-17 10:00:00',
+        returnDate: '2020-11-17 14:00:00',
+        drivingTime: '03:50:00',
+        drivingPrice: 55.0,
+        distance: 10.0,
+        distancePrice: 8.0,
+        stopOverTime: '00:10:00',
+        stopOverPrice: 2.0,
+        totalPrice: 85.0,
+        isActive: false,
+      }
+    ];*/
   chosenRent: RentalDetails = null;
 
   constructor(private service: RentalsService,
@@ -63,8 +63,10 @@ export class RentalsHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.getRentals();
   }
+
   carIcon = this.icons.faCar;
   private id = this.cookies.get('id');
+
   getRentals(): void {
     this.service.getAllRentals(this.id).subscribe(
       data => {
@@ -91,6 +93,7 @@ export class RentalsHistoryComponent implements OnInit {
     document.querySelector('.app-content').classList.remove('blur');
   }
 }
+
 interface Rental {
   id: number;
   vehicleId: number;
@@ -98,6 +101,7 @@ interface Rental {
   returnDate: string;
   totalPrice: number;
 }
+
 interface RentalDetails {
   id: number;
   rentDate: string;

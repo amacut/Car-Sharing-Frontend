@@ -1,5 +1,5 @@
 <section class="app-content">
-<h2>Twoje wypożyczenia</h2>
+  <h2>Twoje wypożyczenia</h2>
   <table *ngIf="rentalsList" class="table table-dark table-striped">
     <thead>
     <tr>
@@ -11,8 +11,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr  *ngFor="let rental of rentalsList; let i = index">
-      <th scope="row">{{i+1}}</th>
+    <tr *ngFor="let rental of rentalsList; let i = index">
+      <th scope="row">{{i + 1}}</th>
       <td>{{rental.rentDate}}</td>
       <td>{{rental.returnDate}}</td>
       <td>{{rental.totalPrice.toFixed(2)}}</td>
@@ -41,7 +41,9 @@
     <div class="info">
       <h3>Szczegóły wynajmu</h3>
       <p>Koszt całkowity: {{chosenRent.totalPrice.toFixed(2)}} zł</p>
-      <p><fa-icon [icon]="carIcon"></fa-icon>({{chosenRent.vehicleType}}) {{chosenRent.brand}} {{chosenRent.model}} {{chosenRent.registration}}</p>
+      <p>
+        <fa-icon [icon]="carIcon"></fa-icon>
+        ({{chosenRent.vehicleType}}) {{chosenRent.brand}} {{chosenRent.model}} {{chosenRent.registration}}</p>
       <div class="first-column">
         <p>Rozpoczęcie wynajmu</p>
         <p>{{chosenRent.rentDate}}</p>
