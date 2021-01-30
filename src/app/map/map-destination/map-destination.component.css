@@ -69,3 +69,10 @@ font-size: 20px;
   color: white;
 }
 
+agm-direction {
+  color: green;
+}
+agm-polyline {
+  color: yellow;
+}
+

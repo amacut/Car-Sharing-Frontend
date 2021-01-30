@@ -1,40 +1,73 @@
 <section class="app-content">
-<!--  <div class="example" (click)="showRouteDetails()" [ngStyle]="{flexBasis: changeView()}"></div>-->
-  <agm-map
-    [latitude]="startPosition.latitude"
-    [longitude]="startPosition.longitude"
-    [zoom]="zoom"
-    [zoomControl]="true"
-    [clickableIcons]="false"
-    (mapClick)="mapClicked($event)"
-    [ngStyle]="{flexBasis: changeView()}">
+  <agm-map *ngIf="travelMode === 'DRIVING'"
+           [latitude]="startPosition.latitude"
+           [longitude]="startPosition.longitude"
+           [zoom]="zoom"
+           [zoomControl]="true"
+           [clickableIcons]="false"
+           (mapClick)="mapClicked($event)"
+           [ngStyle]="{flexBasis: changeView()}">
 
     <agm-marker [latitude]="startPosition.latitude" [longitude]="startPosition.longitude"></agm-marker>
 
-    <agm-direction *ngIf="selectedRoute" [origin]="origin" [destination]="destination"></agm-direction>
+    <agm-direction *ngIf="selectedRoute && travelMode === 'DRIVING'" [origin]="origin"
+                   [destination]="destination"></agm-direction>
   </agm-map>
-  <div class="rent-details" *ngIf="selectedRoute">
+
+  <agm-map *ngIf="selectedRoute && travelMode === 'WALKING'"
+           [latitude]="userPosition.latitude"
+           [longitude]="userPosition.longitude"
+           [zoom]="zoom"
+           [zoomControl]="true"
+           [clickableIcons]="false"
+           [ngStyle]="{flexBasis: changeView()}">
+
+    <agm-direction *ngIf="selectedRoute && travelMode === 'WALKING'" [origin]="origin" [destination]="destination"
+                   [travelMode]="travelMode"></agm-direction>
+  </agm-map>
+  <div class="rent-details" *ngIf="selectedRoute && travelMode === 'DRIVING'">
     <fa-icon [icon]="back" (click)="selectedRoute = false"></fa-icon>
     <p>Adres początkowy</p>
     <p>{{routeDetails.startAddress}}</p>
     <p>Adres docelowy</p>
     <p>{{routeDetails.endAddress}}</p>
     <p>Szacunkowy dystans:</p>
-    <p>{{routeDetails.distance}}</p>
+    <p>{{routeDetails.distanceText}}</p>
     <p>Szacunkowy czas przejazdu:</p>
-    <p>{{routeDetails.duration}}</p>
+    <p>{{routeDetails.durationText}}</p>
     <p>Szacunkowy koszt</p>
-    <p>7,20 PLN</p>
+    <p>{{routeDetails.totalPrice.toFixed(2)}} zł</p>
     <div class="buttons">
-    <div class="rent">
-      <a>Zarezerwuj ten samochód</a>
-      <a>Rozpocznij wynajem</a>
-    </div>
+      <div class="rent">
+        <a>Zarezerwuj ten samochód</a>
+        <a (click)="beginRent()">Rozpocznij wynajem</a>
+      </div>
 
-    <div class="other">
-      <a >Prowadź do auta</a>
-      <a (click)="selectedRoute = false">Wyceń przejazd</a>
+      <div class="other">
+        <a>Prowadź do auta</a>
+        <a (click)="selectedRoute = false">Wyceń przejazd</a>
+      </div>
     </div>
+  </div>
+
+  <div class="rent-details" *ngIf="selectedRoute && travelMode === 'WALKING'">
+    <fa-icon [icon]="back" (click)="selectedRoute = false"></fa-icon>
+    <p>Adres początkowy</p>
+    <p>{{routeToVehicle.startAddress}}</p>
+    <p>Adres docelowy</p>
+    <p>{{routeToVehicle.endAddress}}</p>
+    <p>Szacunkowy dystans:</p>
+    <p>{{routeToVehicle.distanceText}}</p>
+    <p>Szacunkowy czas:</p>
+    <p>{{routeToVehicle.durationText}}</p>
+    <div class="buttons">
+      <div class="rent">
+        <a>Zarezerwuj ten samochód</a>
+        <a (click)="beginRent()">Rozpocznij wynajem</a>
+      </div>
+      <div class="other">
+        <a (click)="selectedRoute = false">Wyceń przejazd</a>
+      </div>
     </div>
   </div>
 </section>

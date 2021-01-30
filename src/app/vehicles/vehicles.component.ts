@@ -35,11 +35,11 @@ export class VehiclesComponent implements OnInit {
     this.vehicle = this.dialogRef._containerInstance._config.data.response;
   }
 
-  onClose() {
+  onClose(): void {
     this.dialogRef.close();
   }
 
-  bookVehicle() {
+  bookVehicle(): void {
     this.dialogService.openConfirmDialog('Czas rezerwacji samochodu to 1h (koszt 6 zł). Czy chcesz zarezerwować ten samochód?')
       .afterClosed().subscribe(res => {
       if (res) {
@@ -48,27 +48,43 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
-  beginRent() {
-    this.onClose();
+  beginRent(): void {
+    this.calculatePrice();
 
     console.log('Rozpoczęto wynajem');
   }
 
-  showDirections() {
+  showDirectionsToVehicle(): void {
     this.onClose();
+    console.log('działa showDirectionsToVehicle');
+    this.router.navigate(['/map'], {
+      queryParams: {
+        vehicleLatitude: this.vehicle.latitude,
+        vehicleLongitude: this.vehicle.longitude,
+        vehicleId: this.vehicle.id,
+        travelMode: 'WALKING'
+      }
+    });
     console.log('Oto Twoja droga');
   }
+
+  calculateRent(): void {
+    this.calculatePrice();
+    console.log('Wycena przejazdu');
+  }
+
 
   calculatePrice() {
     this.onClose();
     this.router.navigate(['/map'], {
       queryParams: {
         vehicleLatitude: this.vehicle.latitude,
-        vehicleLongitude: this.vehicle.longitude
+        vehicleLongitude: this.vehicle.longitude,
+        vehicleId: this.vehicle.id,
+        travelMode: 'DRIVING'
       }
     });
     this.notification.info('Wskaż na mapie cel podróży');
-    console.log('Wyceniono przejazd');
   }
 }
 

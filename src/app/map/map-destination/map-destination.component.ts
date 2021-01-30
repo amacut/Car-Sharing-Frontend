@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
 import {FortAwesomeService} from '../../shared/fort-awesome/fort-awesome.service';
 import {NotificationService} from '../../services/notification.service';
+import {RentalsService} from '../../services/rentals.service';
+import {Rental} from '../../model/rental';
+import {CookieService} from 'ngx-cookie-service';
+import {VehiclesService} from '../../services/vehicles.service';
+import {AppComponent} from '../../app.component';
 
 declare var google: any;
 
@@ -17,21 +22,33 @@ export class MapDestinationComponent implements OnInit {
     latitude: 0,
     longitude: 0
   };
+  vehicleId = 0;
   zoom = 16;
   origin: any;
   destination: any;
+  travelMode: string;
+  stopOverTime = 0;
   private directionsRenderer: any;
   routeDetails: RouteDetails;
+  routeToVehicle: RouteToVehicle;
   selectedRoute: boolean;
+  private newRental: Rental;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private mapsAPILoader: MapsAPILoader,
               private gMapsApi: GoogleMapsAPIWrapper,
               private icons: FortAwesomeService,
-              private notification: NotificationService) {
+              private notification: NotificationService,
+              private rentalService: RentalsService,
+              private cookies: CookieService,
+              private vehicleService: VehiclesService,
+              private mainComponent: AppComponent) {
   }
 
+  userPosition = this.mainComponent.userPosition;
   back = this.icons.back;
+  userId = this.cookies.get('id');
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -39,7 +56,13 @@ export class MapDestinationComponent implements OnInit {
         latitude: parseFloat(params['vehicleLatitude']),
         longitude: parseFloat(params['vehicleLongitude'])
       };
+      this.vehicleId = parseInt(params['vehicleId']);
+      this.travelMode = params['travelMode'];
     });
+
+    if (this.travelMode === 'WALKING') {
+      this.showRouteToVehicle();
+    }
   }
 
   changeView(): string {
@@ -47,24 +70,27 @@ export class MapDestinationComponent implements OnInit {
   }
 
   mapClicked(event): void {
-    const latitude = event.coords.lat;
-    const longitude = event.coords.lng;
-    this.origin = {
-      lat: this.startPosition.latitude,
-      lng: this.startPosition.longitude
-    };
-    this.destination = {
-      lat: latitude,
-      lng: longitude
-    };
-    if (this.origin.lat && this.origin.lng && this.destination.lat && this.destination.lng) {
-      this.getDirection(this.origin.lat, this.origin.lng, this.destination.lat, this.destination.lng);
-      this.changeSelectedRoute();
+    if (this.travelMode === 'DRIVING') {
+      this.selectedRoute = false;
+      const latitude = event.coords.lat;
+      const longitude = event.coords.lng;
+      this.origin = {
+        lat: this.startPosition.latitude,
+        lng: this.startPosition.longitude
+      };
+      this.destination = {
+        lat: latitude,
+        lng: longitude
+      };
+      if (this.origin.lat && this.origin.lng && this.destination.lat && this.destination.lng) {
+        this.getDirection(this.origin.lat, this.origin.lng, this.destination.lat, this.destination.lng);
+        this.changeSelectedRoute();
+      }
     }
   }
 
   changeSelectedRoute(): void {
-    this.notification.info('Ładowanie danych...');
+    this.notification.success('Ładowanie danych...');
     setTimeout(() => {
       this.selectedRoute = true;
       this.notification.snackBar.dismiss();
@@ -86,7 +112,7 @@ export class MapDestinationComponent implements OnInit {
           lat: destinationLat,
           lng: destinationLng
         },
-        travelMode: 'DRIVING'
+        travelMode: this.travelMode,
       },
       (result, status) => {
         if (status !== 'OK') {
@@ -99,20 +125,88 @@ export class MapDestinationComponent implements OnInit {
             window.alert('Directions request failed');
             return;
           } else {
-            this.routeDetails = {
-              distance: directionsData.distance.text,
-              duration: directionsData.duration.text,
-              startAddress: directionsData.start_address,
-              endAddress: directionsData.end_address
-            };
+            if (this.travelMode === 'DRIVING') {
+              console.log('getRoute DRIVING');
+              this.rentalService.getRoutePrice(this.vehicleId, directionsData.distance.value,
+                directionsData.duration.value, this.stopOverTime)
+                .subscribe(
+                  data => {
+                    this.routeDetails = {
+                      distanceText: directionsData.distance.text,
+                      durationText: directionsData.duration.text,
+                      distance: directionsData.distance.value,
+                      duration: directionsData.duration.value,
+                      startAddress: directionsData.start_address,
+                      endAddress: directionsData.end_address,
+                      totalPrice: data
+                    };
+                  }
+                );
+            }
+            if (this.travelMode === 'WALKING') {
+              this.routeToVehicle = {
+                distanceText: directionsData.distance.text,
+                durationText: directionsData.duration.text,
+                startAddress: directionsData.start_address,
+                endAddress: directionsData.end_address,
+              };
+            }
           }
         }
       });
   }
+
+  showRouteToVehicle(): void {
+    this.origin = {
+      lat: this.userPosition.latitude,
+      lng: this.userPosition.longitude
+    };
+    this.destination = {
+      lat: this.startPosition.latitude,
+      lng: this.startPosition.longitude
+    };
+    this.getDirection(this.origin.lat, this.origin.lng, this.destination.lat, this.destination.lng);
+    this.changeSelectedRoute();
+  }
+
+  beginRent(): void {
+    this.newRental = {
+      userId: this.userId,
+      origin: this.routeDetails.startAddress,
+      destination: this.routeDetails.endAddress,
+      drivingTime: this.routeDetails.duration,
+      distance: this.routeDetails.distance,
+      stopOverTime: this.stopOverTime,
+      vehicleId: this.vehicleId,
+    };
+
+    this.rentalService.addNewRental(this.newRental).subscribe();
+    this.vehicleService.changeVehiclePosition(this.vehicleId, this.destination.lat, this.destination.lng).subscribe();
+    this.cookies.set('userPosition', 'true');
+    setTimeout(() => {
+      this.router.navigate(['/mainpage'], {
+        queryParams: {
+          newUserLatitude: this.destination.lat,
+          newUserLongitude: this.destination.lng,
+        }
+      });
+    }, 3000);
+  }
 }
+
 interface RouteDetails {
-  distance: string;
-  duration: string;
+  distanceText: string;
+  durationText: string;
+  distance: number;
+  duration: number;
+  startAddress: string;
+  endAddress: string;
+  totalPrice: number;
+}
+
+interface RouteToVehicle {
+  distanceText: string;
+  durationText: string;
   startAddress: string;
   endAddress: string;
 }

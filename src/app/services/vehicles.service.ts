@@ -21,5 +21,8 @@ return this.http.get<Vehicle[]>(this.mainUrl + 'all');
   getVehicle(id: number): Observable<Vehicle>  {
     return this.http.get<Vehicle>(this.mainUrl + '/' + id);
   }
+  changeVehiclePosition(id, latitude, longitude): Observable<any> {
+    return this.http.patch<any>(this.mainUrl + 'changeVehicleDetails/' + id, {latitude, longitude});
+  }
 }
 
