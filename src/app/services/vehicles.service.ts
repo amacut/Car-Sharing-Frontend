@@ -15,8 +15,8 @@ export class VehiclesService {
   constructor( private http: HttpClient) {
   }
 
-  getVehicles(): Observable<Vehicle[]> {
-return this.http.get<Vehicle[]>(this.mainUrl + 'all');
+  getVehicles(id: string): Observable<Vehicle[]> {
+return this.http.get<Vehicle[]>(this.mainUrl + 'all/' + id);
   }
   getVehicle(id: number): Observable<Vehicle>  {
     return this.http.get<Vehicle>(this.mainUrl + '/' + id);
