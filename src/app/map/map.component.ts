@@ -4,6 +4,11 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {VehiclesComponent} from '../vehicles/vehicles.component';
 import {take} from 'rxjs/operators';
 import {GeolocationService} from '@ng-web-apis/geolocation';
+import {ActivatedRoute} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
+import {AppComponent} from '../app.component';
+import {Vehicle} from '../model/vehicle';
+import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
 
 
 @Component({
@@ -16,37 +21,61 @@ export class MapComponent implements OnInit {
 
   // zoom level and center position for the map
   zoom = 16;
-  userLatitude = 0;
-  userLongitude = 0;
+
+  userChangePosition: string;
   userIcon = 'https://img.icons8.com/office/40/000000/marker.png';
-  vehicleIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon54.png';
-  // vehicleTakenIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon7.png';
-  // vehicleChosen = 'http://maps.google.com/mapfiles/kml/pal4/icon23.png';
+  freeVehicleIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon54.png';
+  vehicleChosenIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon7.png';
+  reservedVehicleIcon = 'http://maps.google.com/mapfiles/kml/pal4/icon23.png';
 
 
   constructor(private vehicleService: VehiclesService,
               private dialog: MatDialog,
-              private readonly geolocation$: GeolocationService) {
+              private readonly geolocation$: GeolocationService,
+              private route: ActivatedRoute,
+              private cookies: CookieService,
+              private mainComponent: AppComponent,
+              private icons: FortAwesomeService) {
   }
 
+  exitIcon = this.icons.exit;
+  vehicleDetails: Vehicle;
+  showVehicleDetails = false;
+  userPosition = this.mainComponent.userPosition;
+
   ngOnInit(): void {
+    if (this.cookies.get('userPosition')) {
+      this.userChangePosition = this.cookies.get('userPosition');
+    }
     this.userLocation();
     this.addAllVehiclesToMap();
   }
 
   userLocation(): void {
-    this.geolocation$.pipe(take(1)).subscribe(position => {
-      this.userLatitude = position.coords.latitude;
-      this.userLongitude = position.coords.longitude - 0.008;
-    });
+    if (this.userChangePosition === 'true') {
+      this.userPosition.latitude = parseFloat(this.cookies.get('userPositionLat'));
+      this.userPosition.longitude = parseFloat(this.cookies.get('userPositionLng')) + 0.0005;
+    } else {
+      console.log('geo');
+      this.geolocation$.pipe(take(1)).subscribe(position => {
+        this.userPosition.latitude = position.coords.latitude - 0.010;
+        this.userPosition.longitude = position.coords.longitude + 0.070;
+      });
+    }
   }
 
 
   addAllVehiclesToMap(): void {
-    let allVehicles = this.vehicleService.getVehicles();
+    let allVehicles = this.vehicleService.getVehicles(this.cookies.get('id'));
     allVehicles.subscribe(response => {
+      console.log(response);
       response.forEach(value => {
-        this.addMarker(value.latitude, value.longitude, value.id);
+        if (value.vehicleStatus === 'FREE') {
+          this.addMarker(value.latitude, value.longitude, value.id, this.freeVehicleIcon);
+        } else {
+          this.addMarker(value.latitude, value.longitude, value.id, this.reservedVehicleIcon);
+        }
+
         // this.getAddress(value.latitude, value.longitude);
       });
     });
@@ -54,23 +83,23 @@ export class MapComponent implements OnInit {
 
   vehiclesMarkers: Marker[] = [];
 
-  addMarker(lat: number, lng: number, id: number): void {
+  addMarker(lat: number, lng: number, id: number, vehicleIcon: string): void {
     this.vehiclesMarkers.push(
-      {id: id, lat: lat, lng: lng}
+      {id: id, lat: lat, lng: lng, icon: vehicleIcon}
     );
   }
 
   clickedMarker(id: number): void {
     this.vehicleService.getVehicle(id).subscribe(
       response => {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.autoFocus = true;
-        dialogConfig.width = '25%';
-        dialogConfig.data = {
-          response: response
-        };
-        this.dialog.open(VehiclesComponent, dialogConfig);
-      });
+        this.vehicleDetails = response;
+        this.showVehicleDetails = true;
+      }
+    );
+    document.querySelector('.modal-wrap').classList.add('active');
+  }
+  hideDetails(): void {
+    document.querySelector('.modal-wrap').classList.remove('active');
   }
 
 }
@@ -81,5 +110,5 @@ interface Marker {
   lng: number;
   label?: string;
   draggable?: boolean;
-  // icon?: string;
+  icon?: string;
 }

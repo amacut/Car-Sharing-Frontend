@@ -1,14 +1,13 @@
 <section class="app-content">
-
     <agm-map
-      [latitude]="userLatitude"
-             [longitude]="userLongitude"
+      [latitude]="userPosition.latitude"
+             [longitude]="userPosition.longitude"
              [zoom]="zoom"
              [zoomControl]="true"
              [fullscreenControl]="true"
              [clickableIcons]="false">
-      <agm-marker [latitude]="userLatitude" [longitude]="userLongitude"
-                  [iconUrl]="userIcon" [markerClickable]="false" >
+      <agm-marker [latitude]="userPosition.latitude" [longitude]="userPosition.longitude"
+                  [iconUrl]="userIcon" [markerClickable]="false" [zIndex]="1">
       </agm-marker>
 
       <agm-marker
@@ -17,17 +16,17 @@
         [longitude]="vehicle.lng"
         [label]="vehicle.label"
         [markerDraggable]="vehicle.draggable"
-        [iconUrl]="vehicleIcon"
+        [iconUrl]="vehicle.icon"
+        [zIndex]="0"
         (markerClick)="clickedMarker(vehicle.id)">
-
-        <!--    //(dragEnd)="markerDragEnd(m, $event)">-->
       </agm-marker>
-
-
     </agm-map>
-    <!--<div class="user-location" (click)="userLocation()">-->
-    <!--  <img src="../../assets/images/userlocation.png" alt="">-->
-    <!--</div>-->
-
 </section>
+<section class="modal-wrap">
+  <div class="modal-details" *ngIf="vehicleDetails">
+    <fa-icon class="hide" (click)="hideDetails()" [icon]="exitIcon"></fa-icon>
+  <app-vehicles [vehicle]="vehicleDetails"></app-vehicles>
+  </div>
+</section>
+
 
