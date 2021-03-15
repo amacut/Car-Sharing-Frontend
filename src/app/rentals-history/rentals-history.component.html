@@ -1,18 +1,17 @@
 <section class="app-content">
   <h2>Twoje wypożyczenia</h2>
+  <div class="wrap">
   <table *ngIf="rentalsList" class="table table-dark table-striped">
     <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Rozpoczęcie wynajmu</th>
-      <th scope="col">Zakończenie wynajmu</th>
-      <th scope="col">Cena wynajmu</th>
-      <th></th>
+      <th scope="col" (click)="sort('rentDate')">Rozpoczęcie wynajmu&nbsp;<fa-icon [icon]="sortIcon"></fa-icon></th>
+      <th scope="col" (click)="sort('returnDate')">Zakończenie wynajmu&nbsp;<fa-icon [icon]="sortIcon"></fa-icon></th>
+      <th scope="col" (click)="sort('totalPrice')">Cena wynajmu&nbsp;<fa-icon [icon]="sortIcon"></fa-icon></th>
+      <th><fa-icon [icon]="detailsIcon"></fa-icon></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let rental of rentalsList; let i = index">
-      <th scope="row">{{i + 1}}</th>
+    <tr *ngFor="let rental of rentalsList | orderBy: key: reverse | paginate:{itemsPerPage: 8, currentPage: p}; let i = index ">
       <td>{{rental.rentDate}}</td>
       <td>{{rental.returnDate}}</td>
       <td>{{rental.totalPrice.toFixed(2)}}</td>
@@ -20,20 +19,10 @@
     </tr>
     </tbody>
   </table>
-
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-      </li>
-      <li class="page-item"><a class="page-link">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
-    </ul>
+  <nav class="paginator">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </nav>
+  </div>
 </section>
 <section class="modal-wrap">
   <div *ngIf="chosenRent" class="modal-details">
@@ -41,9 +30,8 @@
     <div class="info">
       <h3>Szczegóły wynajmu</h3>
       <p>Koszt całkowity: {{chosenRent.totalPrice.toFixed(2)}} zł</p>
-      <p>
-        <fa-icon [icon]="carIcon"></fa-icon>
-        ({{chosenRent.vehicleType}}) {{chosenRent.brand}} {{chosenRent.model}} {{chosenRent.registration}}</p>
+
+      <p><fa-icon [icon]="carIcon"></fa-icon>({{chosenRent.vehicleType}}) {{chosenRent.brand}} {{chosenRent.model}} {{chosenRent.registration}}</p>
       <div class="first-column">
         <p>Rozpoczęcie wynajmu</p>
         <p>{{chosenRent.rentDate}}</p>
