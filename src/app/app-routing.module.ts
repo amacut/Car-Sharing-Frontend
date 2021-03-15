@@ -5,13 +5,14 @@ import {RegistrationComponent} from './registration/registration.component';
 import {MainPageComponent} from './mainpage/main-page.component';
 
 import {PromotionsComponent} from './promotions/promotions.component';
-import {SettingsComponent} from './settings/settings.component';
 import {RentalsHistoryComponent} from './rentals-history/rentals-history.component';
 import {ActiveBookingComponent} from './active-booking/active-booking.component';
 import {PriceListComponent} from './price-list/price-list.component';
 import {GuidesComponent} from './guides/guides.component';
 import {MapDestinationComponent} from './map/map-destination/map-destination.component';
 import {UserAccountDetailsComponent} from './user-account-details/user-account-details.component';
+import {WalletDetailsComponent} from './wallet/wallet-details/wallet-details.component';
+import {RefreshComponent} from './refresh/refresh.component';
 
 
 
@@ -61,8 +62,12 @@ const routes: Routes = [
     component: PromotionsComponent
   },
   {
-    path: 'settings',
-    component: SettingsComponent
+    path: 'wallet',
+    component: WalletDetailsComponent
+  },
+  {
+    path: 'refresh',
+    component: RefreshComponent
   }
 ];
 

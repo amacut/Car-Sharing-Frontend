@@ -33,12 +33,16 @@ import {RentalsHistoryComponent} from './rentals-history/rentals-history.compone
 import {ActiveBookingComponent} from './active-booking/active-booking.component';
 import {PriceListComponent} from './price-list/price-list.component';
 import {GuidesComponent} from './guides/guides.component';
-import {SettingsComponent} from './settings/settings.component';
 import {GoogleMapsModule} from '@angular/google-maps';
 import {MapDestinationComponent} from './map/map-destination/map-destination.component';
 import {MatDialogRef} from '@angular/material/dialog';
 import {UserAccountDetailsComponent} from './user-account-details/user-account-details.component';
-import { WalletComponent } from './wallet/wallet.component';
+import { WalletValueComponent } from './wallet/wallet-value.component';
+import { WalletDetailsComponent } from './wallet/wallet-details/wallet-details.component';
+import { RefreshComponent } from './refresh/refresh.component';
+import { Ng2OrderModule} from 'ng2-order-pipe';
+import { Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -59,9 +63,10 @@ import { WalletComponent } from './wallet/wallet.component';
     ActiveBookingComponent,
     PriceListComponent,
     GuidesComponent,
-    SettingsComponent,
     MapDestinationComponent,
-    WalletComponent,
+    WalletValueComponent,
+    WalletDetailsComponent,
+    RefreshComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,7 @@ import { WalletComponent } from './wallet/wallet.component';
     FontAwesomeModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      // apiKey: EnvServiceFactory().apiUrl,
+      apiKey: EnvServiceFactory().apiUrl,
       libraries: ['geometry', 'places']
     }),
     AgmDirectionModule,
@@ -80,6 +85,9 @@ import { WalletComponent } from './wallet/wallet.component';
     FormsModule,
     NgbModule,
     GoogleMapsModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule
   ],
   providers: [
     UserService,
