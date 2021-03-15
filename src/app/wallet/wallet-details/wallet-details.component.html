@@ -12,18 +12,27 @@
       </form>
     </div>
     <div class="history">
-      <table>
+      <table *ngIf="walletHistory" class="table table-dark table-striped">
+        <thead>
         <tr>
-          <th>Data</th>
-          <th>Typ transakcji</th>
-          <th>Kwota</th>
+          <th scope="col"(click)="sort('transaction_date')">Data&nbsp;<fa-icon [icon]="sortIcon"></fa-icon></th>
+          <th scope="col"(click)="sort('type')">Typ transakcji&nbsp;<fa-icon [icon]="sortIcon"></fa-icon></th>
+          <th scope="col"(click)="sort('value')">Kwota&nbsp;<fa-icon [icon]="sortIcon"></fa-icon></th>
         </tr>
-        <tr *ngFor="let transaction of walletHistory">
+        </thead>
+        <tbody>
+        <tr *ngFor="let transaction of walletHistory | orderBy: key: reverse | paginate:{itemsPerPage: 10, currentPage: p}; let i = index; ">
           <td>{{transaction.transaction_date}}</td>
           <td>{{transaction.type}}</td>
           <td>{{transaction.value.toFixed(2)}}</td>
         </tr>
+        </tbody>
       </table>
+      <nav>
+        <input class="form-control" type="text" name="transactionType" [(ngModel)]="transactionType" (ngModelChange)="search()"
+        placeholder="Szukaj: Wpłata/Opłata">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </nav>
     </div>
   </div>
 </section>
