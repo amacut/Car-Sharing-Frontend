@@ -12,6 +12,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -29,7 +31,10 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatCheckboxModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatStepperModule
+    MatStepperModule,
+    MatPaginatorModule,
+    MatSlideToggleModule
+
   ],
   exports: [
     MatDialogModule,
@@ -43,7 +48,10 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatCheckboxModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatStepperModule
+    MatStepperModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatSlideToggle
   ]
 })
 export class MaterialModule { }
