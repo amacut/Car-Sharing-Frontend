@@ -6,6 +6,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {DialogService} from '../services/dialog.service';
 import {DatePipe} from '@angular/common';
 import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -19,7 +20,8 @@ export class EditUserComponent implements OnInit {
               private dialog: MatDialogRef<EditUserComponent>,
               private dialogService: DialogService,
               private datePipe: DatePipe,
-              public icons: FortAwesomeService) {
+              public icons: FortAwesomeService,
+              private router: Router) {
   }
 
   hide = true;
@@ -44,6 +46,9 @@ export class EditUserComponent implements OnInit {
           this.notificationService.success('Zaktualizowano dane użytkownika.');
           this.service.userForm.reset();
           this.service.initializeFormGroup();
+          this.router.navigateByUrl('/refresh', {skipLocationChange: true}).then(() => {
+            this.router.navigate(['/account']);
+          });
         },
         error => {
           console.log('exception occured');
