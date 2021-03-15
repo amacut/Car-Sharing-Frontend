@@ -1,0 +1,23 @@
+.app-content {
+  background-color: #3f444a;
+}
+.wrap {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+color: royalblue;
+  text-align: center;
+  font-size: 30px;
+}
+
+.wrap .spinner-border {
+  margin-top: 30px;
+  width: 5rem;
+  height: 5rem;
+  color: royalblue;
+}
+
+
+
+
