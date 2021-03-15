@@ -2,6 +2,7 @@ import {Component, OnInit, Renderer2} from '@angular/core';
 import { LoginComponent} from '../login/login.component';
 
 import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
+import {ThemePalette} from '@angular/material/core';
 
 
 @Component({
@@ -22,11 +23,14 @@ export class MenuComponent implements OnInit {
   configIcon = this.icons.faConfig;
   logOutIcon = this.icons.faLogOut;
   promoIcon = this.icons.faPromo;
+  changeModeIcon = this.icons.faAdjust;
+  color: ThemePalette = 'primary';
+  checked = false;
+  disabled = false;
 
 
   constructor(public loginComp: LoginComponent,
-              public icons: FortAwesomeService,
-              private renderer: Renderer2) {
+              public icons: FortAwesomeService) {
   }
 
   ngOnInit(): void {

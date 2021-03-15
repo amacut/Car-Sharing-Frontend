@@ -91,6 +91,22 @@
 
 }
 
+.menu .settings  {
+  margin: 10px auto;
+  color: royalblue;
+  text-align: center;
+  width: 100%;
+  font-size: 25px;
+}
+mat-slide-toggle {
+  transform: translate(10px, -4px);
+}
+
+.menu .settings fa-icon {
+  font-size: 30px;
+
+}
+
 .menu .socials {
   margin-top: 10px;
 }
@@ -404,6 +420,9 @@
   .menu {
     width: 20%;
   }
+  /*.menu .wallet a {*/
+  /*  margin-top: 0;*/
+  /*}*/
 
   .menu footer p {
     margin-top: 10px;

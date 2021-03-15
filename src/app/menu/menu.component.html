@@ -19,7 +19,7 @@
       Historia wypożyczeń</a></li>
     <li><a [routerLink]="'/active-booking'">
       <fa-icon [icon]="carIcon"></fa-icon>
-      Aktywne wypożyczenia</a></li>
+      Aktywne rezerwacje</a></li>
     <li><a [routerLink]="'/account'">
       <fa-icon [icon]="userIcon"></fa-icon>
       Moje konto</a></li>
@@ -33,13 +33,19 @@
     <li><a [routerLink]="'/promotions'">
       <fa-icon [icon]="promoIcon"></fa-icon>
       Promocje</a></li>
-    <li><a [routerLink]="'/settings'">
-      <fa-icon [icon]="configIcon"></fa-icon>
-      Ustawienia</a></li>
     <li><a (click)="loginComp.logoutUser()">
       <fa-icon [icon]="logOutIcon"></fa-icon>
       Wyloguj</a></li>
   </ul>
+  <div class="settings">
+    <fa-icon [icon]="changeModeIcon"></fa-icon>
+    <mat-slide-toggle
+      class="example-margin"
+      [color]="color"
+      [checked]="checked"
+      [disabled]="disabled">
+    </mat-slide-toggle>
+  </div>
   <div class="socials">
     <a href="#"><img src="../../assets/images/info.jpg" alt=""></a>
     <a href="#"><img src="../../assets/images/facebook.jpg" alt=""></a>
