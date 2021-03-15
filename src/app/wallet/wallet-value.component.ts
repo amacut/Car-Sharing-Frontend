@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
 import {CookieService} from 'ngx-cookie-service';
 import {WalletService} from '../services/wallet.service';
@@ -9,7 +9,8 @@ import {WalletService} from '../services/wallet.service';
 })
 export class WalletValueComponent implements OnInit {
 
-  public walletValue: number;
+  // @Input()
+  walletValue: number;
 
 
   constructor(public icons: FortAwesomeService,
@@ -26,7 +27,6 @@ export class WalletValueComponent implements OnInit {
     this.service.getUserWalletValue(id).subscribe(
       data => {
         this.walletValue = data;
-        console.log(data);
       });
   }
 
