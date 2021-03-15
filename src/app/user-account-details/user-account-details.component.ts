@@ -47,6 +47,8 @@ export class UserAccountDetailsComponent implements OnInit {
   }
 
   onEdit() {
+    console.log('działa');
+    console.log(this.user);
     this.service.populateForm(this.user);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

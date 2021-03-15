@@ -1,10 +1,10 @@
 <section class="app-content">
   <h2>Moje konto</h2>
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="user">
     <div class="first-column">
       <div class="personal-data">
         <h3>Dane osobowe</h3>
-        <p class="label">Imię</p>
+        <p class="label" >Imię</p>
         <p class="info">{{user.firstName}}</p>
         <p class="label">Nazwisko</p>
         <p class="info">{{user.lastName}}</p>
@@ -24,13 +24,13 @@
     <div class="second-column">
       <div class="contact-data">
         <h3>Dane kontaktowe</h3>
-        <p class="label">Numer telefonu</p>
+        <p class="label">Telefon</p>
         <p class="info">{{user.phoneNumber}}</p>
         <p class="label">Kraj</p>
         <p class="info">{{user.country}}</p>
         <p class="label">Ulica</p>
         <p class="info">{{user.street}}</p>
-        <p class="label">Numer domu/mieszkania</p>
+        <p class="label">Nr domu/mieszkania</p>
         <p class="info">{{user.houseNoFlatNo}}</p>
         <p class="label">Kod pocztowy</p>
         <p class="info">{{user.postcode}}</p>
