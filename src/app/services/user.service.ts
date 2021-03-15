@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from '../model/user';
 import {Observable, pipe} from 'rxjs';
 import {LoginComponent} from '../login/login.component';
+import {Wallet} from '../model/wallet';
 
 @Injectable({
   providedIn: 'root'
@@ -51,10 +52,6 @@ export class UserService {
     console.log(email);
     return this.http.delete<User>(this.mainUrl + email);
   }
-
-  public getUserWalletValue(id: string): Observable<any> {
-    return this.http.get(this.mainUrl + 'walletValue/' + id);
-  }
   initializeFormGroup(): void {
     this.userForm.setValue({
       id: null,
@@ -73,7 +70,7 @@ export class UserService {
     });
   }
 
-  populateForm(user): void {
+  populateForm(user: User): void {
     this.userForm.setValue(user);
     console.log(user);
   }
