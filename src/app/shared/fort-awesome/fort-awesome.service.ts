@@ -20,6 +20,9 @@ import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
+import {faSort} from '@fortawesome/free-solid-svg-icons';
+import {faAdjust} from '@fortawesome/free-solid-svg-icons';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,5 +48,7 @@ export class FortAwesomeService {
   exit = faTimes;
   // back icon
   back = faArrowLeft;
+  faSort = faSort;
+  faAdjust = faAdjust;
   constructor() { }
 }
