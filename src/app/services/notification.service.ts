@@ -9,8 +9,8 @@ export class NotificationService {
   constructor(public snackBar: MatSnackBar) { }
 config: MatSnackBarConfig = {
   duration: 3000,
-  horizontalPosition: 'center',
-  verticalPosition: 'bottom'
+  verticalPosition: 'top',
+  horizontalPosition: 'center'
 };
 
   infoConfig: MatSnackBarConfig = {
@@ -28,5 +28,9 @@ config: MatSnackBarConfig = {
   info(msg) {
     this.config.panelClass = ['info'];
     this.snackBar.open(msg, '', this.infoConfig);
+  }
+  reservationInfo(msg) {
+    this.config.panelClass = ['info'];
+    this.snackBar.open(msg, '', this.config);
   }
 }
