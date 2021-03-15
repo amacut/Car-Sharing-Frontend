@@ -11,4 +11,5 @@ export interface Vehicle {
   currentRange: number;
   latitude: number;
   longitude: number;
+  vehicleStatus: string;
 }
