@@ -24,13 +24,19 @@ agm-map {
 .rent-details {
   padding-top: 100px;
   flex-basis: 34%;
-  background-color: #D9D9D9;
+  background-color: #3f444a;
   text-align: center;
+}
+.rent-details p fa-icon {
+  font-size: 25px;
+  color: royalblue;
+
 }
 .rent-details fa-icon {
   font-size: 30px;
   cursor: pointer;
   transition: .2s;
+  color: whitesmoke;
 
 }
 .rent-details fa-icon:hover {
@@ -45,34 +51,115 @@ font-size: 16px;
 
 .rent-details p:nth-of-type(even) {
 font-size: 20px;
+  color: whitesmoke;
 }
 
 .rent-details .buttons {
   margin: 5vh auto;
   text-align: center;
-  width: 80%;
 }
 
-.rent-details .buttons .rent a {
+.rent-details .buttons a {
   color: white;
+  padding: 10px 20px;
+  background-color: royalblue;
+  border: 2px solid white;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: 20px;
+  width: 55%;
+  display: inline-block;
+  cursor: pointer;
+  transition: .2s;
 }
 
-.rent-details .buttons .rent a:hover{
+.rent-details .buttons a:hover{
   color: royalblue;
+  background-color: white;
+  border-color: royalblue;
+  box-shadow: 0 0 5px whitesmoke;
 }
 
-.rent-details .buttons .other a {
-  color: royalblue;
+.rent-details .buttons .cancel-button{
+  background-color: darkred;
+}
+.rent-details .buttons .cancel-button:hover{
+  background-color: white;
+  color: darkred;
+  border: 2px solid darkred;
 }
 
-.rent-details .buttons .other a:hover{
+.modal-reservation {
+  display: none;
+}
+
+.modal-reservation.active {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.modal-reservation.active .modal-details {
+  position: absolute;
+  top: 40%;
+  left: 75%;
+  width: 20%;
+  height: 20%;
+  border: 3px solid royalblue;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 20px;
+}
+
+.modal-reservation.active .modal-details .info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-reservation.active .modal-details .info h3 {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.modal-reservation.active .modal-details .info form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 60%;
+  width: 100%;
+}
+.modal-reservation.active .modal-details .info form input{
+  font-size: 20px;
+  width: 20%;
+  border: 2px solid royalblue;
+}
+
+.modal-reservation.active .modal-details .info .buttons {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-reservation.active .modal-details .info .buttons button {
+  width: 40%;
+  padding: 8px 0;
+  border: none;
   color: white;
+  text-transform: uppercase;
 }
 
-agm-direction {
-  color: green;
-}
-agm-polyline {
-  color: yellow;
+.modal-reservation.active .modal-details .info .buttons button:nth-of-type(1) {
+  background-color: darkred;
 }
 
+.modal-reservation.active .modal-details .info .buttons button:nth-of-type(2) {
+  background-color: darkgreen;
+}

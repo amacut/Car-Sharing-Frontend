@@ -8,6 +8,9 @@ import {Rental} from '../../model/rental';
 import {CookieService} from 'ngx-cookie-service';
 import {VehiclesService} from '../../services/vehicles.service';
 import {AppComponent} from '../../app.component';
+import {VehiclesComponent} from '../../vehicles/vehicles.component';
+import {Vehicle} from '../../model/vehicle';
+import {ReservationService} from '../../services/reservation.service';
 
 declare var google: any;
 
@@ -33,6 +36,8 @@ export class MapDestinationComponent implements OnInit {
   routeToVehicle: RouteToVehicle;
   selectedRoute: boolean;
   private newRental: Rental;
+  vehicle: Vehicle;
+  time: number;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -43,11 +48,13 @@ export class MapDestinationComponent implements OnInit {
               private rentalService: RentalsService,
               private cookies: CookieService,
               private vehicleService: VehiclesService,
-              private mainComponent: AppComponent) {
+              private mainComponent: AppComponent,
+              public reservationService: ReservationService) {
   }
 
   userPosition = this.mainComponent.userPosition;
   back = this.icons.back;
+  vehicleIcon = this.icons.faCar;
   userId = this.cookies.get('id');
 
   ngOnInit(): void {
@@ -59,10 +66,21 @@ export class MapDestinationComponent implements OnInit {
       this.vehicleId = parseInt(params['vehicleId']);
       this.travelMode = params['travelMode'];
     });
-
+    this.vehicleService.getVehicle(this.vehicleId).subscribe(
+      response => {
+        this.vehicle = response;
+      }
+    );
     if (this.travelMode === 'WALKING') {
       this.showRouteToVehicle();
     }
+  }
+  bookVehicle(): void {
+    document.querySelector('.modal-reservation').classList.add('active');
+  }
+
+  hideReservationModal(): void {
+    document.querySelector('.modal-reservation').classList.remove('active');
   }
 
   changeView(): string {
@@ -178,11 +196,16 @@ export class MapDestinationComponent implements OnInit {
       distance: this.routeDetails.distance,
       stopOverTime: this.stopOverTime,
       vehicleId: this.vehicleId,
+      latitude: this.destination.lat,
+      longitude: this.destination.lng
     };
 
     this.rentalService.addNewRental(this.newRental).subscribe();
-    this.vehicleService.changeVehiclePosition(this.vehicleId, this.destination.lat, this.destination.lng).subscribe();
+    // this.vehicleService.changeVehiclePosition(this.vehicleId, this.destination.lat, this.destination.lng).subscribe();
     this.cookies.set('userPosition', 'true');
+    this.cookies.set('userPositionLat', this.destination.lat);
+    this.cookies.set('userPositionLng', this.destination.lng);
+    this.notification.success('Trwa symulacja podróży...');
     setTimeout(() => {
       this.router.navigate(['/mainpage'], {
         queryParams: {
