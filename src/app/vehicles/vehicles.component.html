@@ -1,14 +1,24 @@
 <div class="wrapper">
   <p class="location">Polska, Warszawa, Górce</p>
-  <p class="car">({{vehicle.vehicleType}}) {{vehicle.vehicleBrand}} {{vehicle.vehicleModel}} {{vehicle.registration}}</p>
+  <p class="car">({{vehicle.vehicleType}}
+    ) {{vehicle.vehicleBrand}} {{vehicle.vehicleModel}} {{vehicle.registration}}</p>
   <div class="params">
-    <p><fa-icon [icon]="distanceIcon"></fa-icon>Odległość:</p>
+    <p>
+      <fa-icon [icon]="distanceIcon"></fa-icon>
+      Odległość:
+    </p>
     <p>0,4</p>
     <p class="unit">km</p>
-    <p><fa-icon [icon]="rangeIcon"></fa-icon>Zasięg:</p>
+    <p>
+      <fa-icon [icon]="rangeIcon"></fa-icon>
+      Zasięg:
+    </p>
     <p>{{vehicle.currentRange}}</p>
     <p class="unit">km</p>
-    <p><fa-icon [icon]="fuelIcon"></fa-icon>Paliwo:</p>
+    <p>
+      <fa-icon [icon]="fuelIcon"></fa-icon>
+      Paliwo:
+    </p>
     <p>{{vehicle.currentFuel}}</p>
     <p class="unit">%</p>
   </div>
@@ -31,14 +41,100 @@
     </div>
   </div>
 
-    <div class="rent">
-      <a (click)="bookVehicle()">Zarezerwuj ten samochód</a>
-      <a (click)="beginRent()">Rozpocznij wynajem</a>
-    </div>
+  <div [ngSwitch]="this.vehicle.vehicleStatus" class="rent">
+    <a *ngSwitchCase="'FREE'" (click)="bookVehicle()">Zarezerwuj ten samochód</a>
+    <a *ngSwitchCase="'RESERVED'"  class="cancel-button" (click)="reservationService.cancelActiveReservation(vehicle)">Anuluj rezerwację</a>
+    <a (click)="beginRent()">Rozpocznij wynajem</a>
+  </div>
 
-    <div class="other">
-      <a (click)="showDirectionsToVehicle()">Prowadź do auta</a>
-      <a (click)="calculateRent()">Wyceń przejazd</a>
+  <div class="other">
+    <a (click)="showDirectionsToVehicle()">Prowadź do auta</a>
+    <a (click)="calculateRent()">Wyceń przejazd</a>
+  </div>
+</div>
+<section class="modal-reservation">
+  <div class="modal-details">
+    <div class="info">
+      <h3>Rezerwacja</h3>
+      <form #reservationForm="ngForm">
+      <label for="reservationTime">Na ile godzin chcesz zarezerwować samochód?</label>
+      <input id="reservationTime" name="reservationTime" type="number" #reservationTime="ngModel" [(ngModel)]="time">
+      <div class="buttons">
+        <button (click)="hideReservationModal()">Anuluj</button>
+        <button type="submit" [disabled]="reservationForm.invalid" (click)="reservationService.reservationVehicle(time, vehicle)">Zarezerwuj</button>
+      </div>
+      </form>
     </div>
   </div>
+</section>
+
+
+<!--<div class="wrapper">
+  <p class="location">Polska, Warszawa, Górce</p>
+  <p class="car">({{vehicle.vehicleType}}
+    ) {{vehicle.vehicleBrand}} {{vehicle.vehicleModel}} {{vehicle.registration}}</p>
+  <div class="params">
+    <p>
+      <fa-icon [icon]="distanceIcon"></fa-icon>
+      Odległość:
+    </p>
+    <p>0,4</p>
+    <p class="unit">km</p>
+    <p>
+      <fa-icon [icon]="rangeIcon"></fa-icon>
+      Zasięg:
+    </p>
+    <p>{{vehicle.currentRange}}</p>
+    <p class="unit">km</p>
+    <p>
+      <fa-icon [icon]="fuelIcon"></fa-icon>
+      Paliwo:
+    </p>
+    <p>{{vehicle.currentFuel}}</p>
+    <p class="unit">%</p>
+  </div>
+
+  <div class="cost">
+    <div class="driving">
+      <p>Minuta jazdy</p>
+      <p>{{vehicle.drivingPrice.toFixed(2)}}</p>
+      <p>PLN/min</p>
+    </div>
+    <div class="stop">
+      <p>Postój</p>
+      <p>{{vehicle.stopOverPrice.toFixed(2)}}</p>
+      <p>PLN/min</p>
+    </div>
+    <div class="kilometers">
+      <p>Kilometr</p>
+      <p>{{vehicle.distancePrice.toFixed(2)}}</p>
+      <p>PLN/km</p>
+    </div>
+  </div>
+
+  <div class="rent">
+    <a (click)="bookVehicle()">Zarezerwuj ten samochód</a>
+    <a (click)="beginRent()">Rozpocznij wynajem</a>
+  </div>
+
+  <div class="other">
+    <a (click)="showDirectionsToVehicle()">Prowadź do auta</a>
+    <a (click)="calculateRent()">Wyceń przejazd</a>
+  </div>
+</div>
+
+<section class="modal-wrap">
+  <div class="modal-details">
+    <div class="info">
+      <h3>Rezerwacja</h3>
+      <form #reservationForm="ngForm" (ngSubmit)="reservationVehicle()"></form>
+      <label for="reservationTime">Na ile godzin chcesz zarezerwować samochód?</label>
+      <input id="reservationTime" name="reservationTime" type="number" #reservationTime="ngModel" [(ngModel)]="time">
+      <div class="buttons">
+        <button>Anuluj</button>
+        <button type="submit" [disabled]="reservationForm.invalid">Zarezerwuj</button>
+      </div>
+    </div>
+  </div>
+</section>-->
 

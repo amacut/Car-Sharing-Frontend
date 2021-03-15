@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {VehiclesService} from '../services/vehicles.service';
 import {Vehicle} from '../model/vehicle';
-import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
-
+import {MatDialog} from '@angular/material/dialog';
 import {DialogService} from '../services/dialog.service';
 import {Router} from '@angular/router';
 import {NotificationService} from '../services/notification.service';
-import {MapDestinationComponent} from '../map/map-destination/map-destination.component';
 import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
+import {ReservationService} from '../services/reservation.service';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Component({
@@ -18,45 +18,74 @@ import {FortAwesomeService} from '../shared/fort-awesome/fort-awesome.service';
 })
 export class VehiclesComponent implements OnInit {
 
-  public vehicle: Vehicle;
+  @Input()
+  vehicle: Vehicle;
+
   fuelIcon = this.icons.faFuel;
   rangeIcon = this.icons.faRange;
   distanceIcon = this.icons.faDistance;
+  time: number;
+  reservation: Reservation;
 
-  constructor(private dialogRef: MatDialogRef<VehiclesComponent>,
-              private dialogService: DialogService,
+  constructor(private dialogService: DialogService,
               private dialog: MatDialog,
               private notification: NotificationService,
               private router: Router,
-              public icons: FortAwesomeService) {
+              public icons: FortAwesomeService,
+              public reservationService: ReservationService,
+              private cookie: CookieService) {
   }
+
+
 
   ngOnInit(): void {
-    this.vehicle = this.dialogRef._containerInstance._config.data.response;
-  }
 
-  onClose(): void {
-    this.dialogRef.close();
   }
 
   bookVehicle(): void {
-    this.dialogService.openConfirmDialog('Czas rezerwacji samochodu to 1h (koszt 6 zł). Czy chcesz zarezerwować ten samochód?')
-      .afterClosed().subscribe(res => {
-      if (res) {
-        console.log('Samochód zarezerwowany');
+    document.querySelector('.modal-reservation').classList.add('active');
+  }
+
+  hideReservationModal(): void {
+    document.querySelector('.modal-reservation').classList.remove('active');
+  }
+
+  reservationVehicle(): void {
+    if (this.time > 0) {
+      const notificationMsg = 'Samochód '
+        + this.vehicle.vehicleBrand + ' ' + this.vehicle.vehicleModel + ' został zarezerwowany na ' + this.time;
+      if (this.time === 1) {
+        this.notification.reservationInfo(notificationMsg + ' godzinę');
+      } else if (this.time % 10 === 2 || this.time % 10 === 3 || this.time % 10 === 4) {
+        this.notification.reservationInfo(notificationMsg + ' godziny');
+      } else {
+        this.notification.reservationInfo(notificationMsg + ' godzin');
       }
-    });
+      this.reservation = {
+        userId: this.cookie.get('id'),
+        vehicleId: this.vehicle.id,
+        reservationTime: this.time
+      };
+      this.reservationService.addNewReservation(this.reservation).subscribe();
+      document.querySelector('.modal-reservation').classList.remove('active');
+      this.router.navigateByUrl('/refresh').then(() => {
+        setTimeout(() => {
+          this.router.navigate(['/mainpage']);
+        }, 2000);
+      });
+    }
+  }
+
+  cancelReservation(): void {
+    this.reservationService.cancelActiveReservation(this.vehicle);
+    document.querySelector('.modal-wrap').classList.remove('active');
   }
 
   beginRent(): void {
     this.calculatePrice();
-
-    console.log('Rozpoczęto wynajem');
   }
 
   showDirectionsToVehicle(): void {
-    this.onClose();
-    console.log('działa showDirectionsToVehicle');
     this.router.navigate(['/map'], {
       queryParams: {
         vehicleLatitude: this.vehicle.latitude,
@@ -65,17 +94,14 @@ export class VehiclesComponent implements OnInit {
         travelMode: 'WALKING'
       }
     });
-    console.log('Oto Twoja droga');
   }
 
   calculateRent(): void {
     this.calculatePrice();
-    console.log('Wycena przejazdu');
   }
 
 
-  calculatePrice() {
-    this.onClose();
+  calculatePrice(): void {
     this.router.navigate(['/map'], {
       queryParams: {
         vehicleLatitude: this.vehicle.latitude,
@@ -86,6 +112,12 @@ export class VehiclesComponent implements OnInit {
     });
     this.notification.info('Wskaż na mapie cel podróży');
   }
+}
+
+interface Reservation {
+  userId: any;
+  vehicleId: any;
+  reservationTime?: number;
 }
 
 
